@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Tapetes artesanales zapotecos de Teotitlán del Valle, Oaxaca. Historia, proceso, tintes naturales y cómo juzgar una pieza auténtica.">
-  <title>14 Hilos de Lana — Hilario, Tejedor de Teotitlán del Valle</title>
+  <title>Tienda — 14 Hilos de Lana</title>
 
   <!-- Google Fonts — preconnect primero (SKILL: carga correcta) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -827,12 +827,12 @@
      NAV
 ═══════════════════════════════════════ -->
 <nav id="mainNav">
-  <a href="#top" class="logo">14 HILOS <span>◈</span> DE LANA</a>
+  <a href="index.html" class="logo">14 HILOS <span>◈</span> DE LANA</a>
   <ul class="nav-menu">
-    <li><a onclick="navTo('familia')"><span class="es">Hilario</span><span class="en">Hilario</span></a></li>
+    <li><a href="index.html"><span class="es">Inicio</span><span class="en">Home</span></a></li>
+    <li><a href="index.html#familia"><span class="es">Hilario</span><span class="en">Hilario</span></a></li>
     <li><a href="historia.html"><span class="es">Historia</span><span class="en">History</span></a></li>
-    <li><a onclick="navTo('proceso')"><span class="es">El Taller</span><span class="en">The Workshop</span></a></li>
-    <li><a href="tienda.html"><span class="es">Tienda</span><span class="en">Shop</span></a></li>
+    <li><a onclick="navTo('tienda')"><span class="es">Tienda</span><span class="en">Shop</span></a></li>
     <li><a onclick="navTo('contacto')"><span class="es">Contacto</span><span class="en">Contact</span></a></li>
   </ul>
   <div class="nav-right">
@@ -848,254 +848,125 @@
 
 <!-- Overlay menú mobile -->
 <div id="navLinks" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(6,3,1,0.97);z-index:9999;flex-direction:column;align-items:center;justify-content:center;gap:34px;">
-  <a onclick="navTo('familia')" style="color:#f2e8d9;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1.9rem;letter-spacing:0.05em;cursor:pointer;"><span class="es">Hilario</span><span class="en">Hilario</span></a>
+  <a href="index.html" style="color:#f2e8d9;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1.9rem;letter-spacing:0.05em;"><span class="es">Inicio</span><span class="en">Home</span></a>
+  <a href="index.html#familia" style="color:#f2e8d9;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1.9rem;letter-spacing:0.05em;"><span class="es">Hilario</span><span class="en">Hilario</span></a>
   <a href="historia.html" style="color:#f2e8d9;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1.9rem;letter-spacing:0.05em;"><span class="es">Historia</span><span class="en">History</span></a>
-  <a onclick="navTo('proceso')" style="color:#f2e8d9;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1.9rem;letter-spacing:0.05em;cursor:pointer;"><span class="es">El Taller</span><span class="en">The Workshop</span></a>
-  <a href="tienda.html" style="color:#f2e8d9;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1.9rem;letter-spacing:0.05em;"><span class="es">Tienda</span><span class="en">Shop</span></a>
+  <a onclick="navTo('tienda')" style="color:#f2e8d9;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1.9rem;letter-spacing:0.05em;cursor:pointer;"><span class="es">Tienda</span><span class="en">Shop</span></a>
   <a onclick="navTo('contacto')" style="color:#f2e8d9;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1.9rem;letter-spacing:0.05em;cursor:pointer;"><span class="es">Contacto</span><span class="en">Contact</span></a>
 </div>
 
+
+
+
+
+
 <!-- ═══════════════════════════════════════
-     HERO
+     TIENDA
 ═══════════════════════════════════════ -->
-<section class="hero" id="top">
-  <div class="frayed" style="position:absolute; top:var(--nav-h); left:0; z-index:1;" aria-hidden="true"></div>
-  <div class="hero-inner">
-    <div class="hero-text">
-      <svg class="flourish" viewBox="0 0 46 20" fill="none" aria-hidden="true">
-        <path d="M2 15 Q 14 4 23 10 T 43 5" stroke="#b23a2e" stroke-width="1.3" stroke-linecap="round"/>
-        <ellipse cx="14" cy="7" rx="4" ry="2" transform="rotate(-30 14 7)" fill="#6b7a3f"/>
-        <ellipse cx="30" cy="8" rx="4" ry="2" transform="rotate(20 30 8)" fill="#6b7a3f"/>
-        <circle cx="43" cy="5" r="2.2" fill="#b3822e"/>
-        <circle cx="39" cy="3" r="1.4" fill="#b23a2e"/>
-      </svg>
-      <p class="hero-tag es">Teotitlán del Valle · Sierra Juárez · Oaxaca · 2,500 años de tradición</p>
-      <p class="hero-tag en">Teotitlán del Valle · Sierra Juárez · Oaxaca · 2,500 years of tradition</p>
+<section id="tienda">
+  <p class="sec-label es">00 — Tienda</p>
+  <p class="sec-label en">00 — Shop</p>
 
-      <h1 class="hero-title es">El hilo que<br><em>no miente</em></h1>
-      <h1 class="hero-title en">The thread that<br><em>never lies</em></h1>
+  <h2 class="sec-title es">Llevar uno<br>a <em>casa</em></h2>
+  <h2 class="sec-title en">Bring one<br><em>home</em></h2>
 
-      <p class="hero-sub es">Escaneaste el tapete de una familia de tejedores en Teotitlán del Valle. Esto no es decoración — es memoria viva, hecha a mano.</p>
-      <p class="hero-sub en">You scanned the rug of a weaving family in Teotitlán del Valle. This isn't decoration — it's living memory, made by hand.</p>
+  <div class="tienda-intro">
+    <p class="sec-body es">Trabajamos por encargo directo con el artesano. Sin intermediarios, sin precios inflados. El precio varía según tamaño, complejidad del diseño y tipo de tinte. Consulta sin compromiso.</p>
+    <p class="sec-body en">We work by direct commission with the artisan. No intermediaries, no inflated prices. Price varies by size, design complexity and dye type. Inquire with no obligation.</p>
+  </div>
 
-      <div class="hero-ctas">
-        <a href="#familia" class="btn-primary es">Conocer a la familia</a>
-        <a href="#familia" class="btn-primary en">Meet the family</a>
-        <a href="#contacto" class="btn-outline es">Conseguir un tapete</a>
-        <a href="#contacto" class="btn-outline en">Get a rug</a>
+  <div class="tienda-grid">
+    <div class="prod-card reveal">
+      <img class="prod-img" src="img/tapete-greca-azul.jpg" alt="Tapete Greca Zapoteca en tonos azules" loading="lazy">
+      <div class="prod-body">
+        <p class="prod-tag es">Tintes Naturales · Cochinilla + Añil</p>
+        <p class="prod-tag en">Natural Dyes · Cochineal + Indigo</p>
+        <h3 class="prod-name es">Greca Zapoteca — Diamante Central</h3>
+        <h3 class="prod-name en">Zapotec Step-Fret — Central Diamond</h3>
+        <p class="prod-desc es">Diseño clásico de Teotitlán con greca de Mitla y diamante central. Tintes 100% naturales. Reversible — mismo diseño en ambos lados.</p>
+        <p class="prod-desc en">Classic Teotitlán design with Mitla step-fret and central diamond. 100% natural dyes. Reversible — same design on both sides.</p>
+        <div class="prod-footer">
+          <span class="prod-precio es">Precio bajo consulta</span>
+          <span class="prod-precio en">Price on request</span>
+          <button class="btn-consultar" onclick="abrirModal('Greca Zapoteca — Diamante Central')">
+            <span class="es">Consultar</span>
+            <span class="en">Inquire</span>
+          </button>
+        </div>
       </div>
     </div>
 
-    <div class="hero-photo">
-      <img src="img/hilario-retrato.jpg" alt="Hilario sosteniendo uno de sus tapetes, en su taller de Teotitlán del Valle" loading="eager">
-      <div class="hero-photo-tag es">Hilario, tejedor de 14 Hilos de Lana</div>
-      <div class="hero-photo-tag en">Hilario, weaver of 14 Hilos de Lana</div>
+    <div class="prod-card reveal">
+      <img class="prod-img" src="img/tapete-greca-bn.jpg" alt="Tapete Greca Clásica en blanco y negro" loading="lazy">
+      <div class="prod-body">
+        <p class="prod-tag es">Lana Natural · Blanco y Negro</p>
+        <p class="prod-tag en">Natural Wool · Black and White</p>
+        <h3 class="prod-name es">Greca Clásica — Gran Formato</h3>
+        <h3 class="prod-name en">Classic Step-Fret — Large Format</h3>
+        <p class="prod-desc es">Greca clásica tejida con lana natural blanca y negra, sin tintes — la textura y el contraste vienen directo del vellón. Pieza de colección.</p>
+        <p class="prod-desc en">Classic step-fret woven in natural black and white wool, no dyes — texture and contrast come straight from the fleece. Collector's piece.</p>
+        <div class="prod-footer">
+          <span class="prod-precio es">Precio bajo consulta</span>
+          <span class="prod-precio en">Price on request</span>
+          <button class="btn-consultar" onclick="abrirModal('Greca Clásica — Gran Formato')">
+            <span class="es">Consultar</span>
+            <span class="en">Inquire</span>
+          </button>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="scroll-ticker">
-    <div class="ticker-inner">
-      <span><strong>Grana Cochinilla</strong> · Rojo</span>
-      <span><strong>Añil / Índigo</strong> · Azul</span>
-      <span><strong>Cempasúchil</strong> · Amarillo</span>
-      <span><strong>Cáscara de Nuez</strong> · Café</span>
-      <span><strong>Huizache</strong> · Negro</span>
-      <span><strong>Caracol Marino</strong> · Púrpura</span>
-      <span><strong>Musgo de Roca</strong> · Ocre</span>
-      <span><strong>Grana Cochinilla</strong> · Rojo</span>
-      <span><strong>Añil / Índigo</strong> · Azul</span>
-      <span><strong>Cempasúchil</strong> · Amarillo</span>
-      <span><strong>Cáscara de Nuez</strong> · Café</span>
-      <span><strong>Huizache</strong> · Negro</span>
-      <span><strong>Caracol Marino</strong> · Púrpura</span>
-      <span><strong>Musgo de Roca</strong> · Ocre</span>
+    <div class="prod-card reveal">
+      <img class="prod-img" src="img/tapete-telar.jpg" alt="Tapete en proceso sobre el telar al aire libre" loading="lazy">
+      <div class="prod-body">
+        <p class="prod-tag es">Encargo Especial · Diseño a la medida</p>
+        <p class="prod-tag en">Special Commission · Custom Design</p>
+        <h3 class="prod-name es">Encargo Personalizado</h3>
+        <h3 class="prod-name en">Custom Commission</h3>
+        <p class="prod-desc es">¿Tienes un diseño en mente? Tú eliges el tamaño, los colores, los símbolos. El artesano lo teje. Tiempo de elaboración: 1 a 3 meses.</p>
+        <p class="prod-desc en">Have a design in mind? You choose the size, colors, symbols. The artisan weaves it. Production time: 1 to 3 months.</p>
+        <div class="prod-footer">
+          <span class="prod-precio es">Precio bajo consulta</span>
+          <span class="prod-precio en">Price on request</span>
+          <button class="btn-consultar" onclick="abrirModal('Encargo Personalizado')">
+            <span class="es">Consultar</span>
+            <span class="en">Inquire</span>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<div class="sep"></div>
-
-<!-- ═══════════════════════════════════════
-     FAMILIA
-═══════════════════════════════════════ -->
-<section id="familia">
-  <svg class="flourish" viewBox="0 0 46 20" fill="none" aria-hidden="true">
-    <path d="M2 15 Q 14 4 23 10 T 43 5" stroke="#b23a2e" stroke-width="1.3" stroke-linecap="round"/>
-    <ellipse cx="14" cy="7" rx="4" ry="2" transform="rotate(-30 14 7)" fill="#6b7a3f"/>
-    <ellipse cx="30" cy="8" rx="4" ry="2" transform="rotate(20 30 8)" fill="#6b7a3f"/>
-    <circle cx="43" cy="5" r="2.2" fill="#b3822e"/>
-    <circle cx="39" cy="3" r="1.4" fill="#b23a2e"/>
-  </svg>
-  <p class="sec-label es">00 — Hilario</p>
-  <p class="sec-label en">00 — Hilario</p>
-
-  <h2 class="sec-title es">14 Hilos<br>de <em>Lana</em></h2>
-  <h2 class="sec-title en">14 Hilos<br><em>de Lana</em></h2>
-
-  <div style="display:flex; gap:48px; flex-wrap:wrap; align-items:center; margin-top:8px;">
-    <div style="flex:1 1 380px; min-width:280px;">
-      <img class="stitched" src="img/telar-artesano.jpg" alt="Tejiendo en el telar de pedal, taller 14 Hilos de Lana" loading="lazy" style="width:100%; height:auto; display:block; box-shadow:0 20px 50px rgba(0,0,0,0.45);">
+<!-- Modal cotización -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose">&#x2715;</button>
+    <h3 class="modal-title" id="modalTitle">Consultar pieza</h3>
+    <p class="modal-sub es">Te contactamos en menos de 24 horas con disponibilidad y precio exacto.</p>
+    <p class="modal-sub en">We'll contact you within 24 hours with availability and exact price.</p>
+    <div class="form-group">
+      <label class="es">Nombre</label>
+      <label class="en">Name</label>
+      <input type="text" id="m-nombre">
     </div>
-    <div style="flex:1 1 380px; min-width:280px;">
-      <p class="sec-body es">Escaneaste el tapete de <strong>14 Hilos de Lana</strong> — el taller de Hilario, tejedor de Teotitlán del Valle. El nombre no es casual: <em>14</em> por el día que nació, <em>Hilos</em> por su nombre, <em>Lana</em> por el material con el que trabaja.</p>
-      <p class="sec-body en">You scanned a rug from <strong>14 Hilos de Lana</strong> — Hilario's workshop in Teotitlán del Valle. The name isn't random: <em>14</em> for the day he was born, <em>Hilos</em> (threads) for his name, <em>Lana</em> (wool) for the material he works with.</p>
-      <p class="sec-body es">Es la cuarta generación: de su bisabuelo a su abuelo José, de José a su padre Miguel, y de Miguel a Hilario. Sigue los diseños raíz de sus ancestros, pero también arriesga — tejiendo no solo lana, sino algodón, seda, piel, gamuza e ixtle, materiales que pocos se atreven a dominar.</p>
-      <p class="sec-body en">He's the fourth generation: from his great-grandfather to his grandfather José, from José to his father Miguel, and from Miguel to Hilario. He follows his ancestors' root designs, but he also takes risks — weaving not just wool, but cotton, silk, leather, suede, and ixtle, materials few dare to master.</p>
-      <a href="#contacto" class="btn-primary es" style="display:inline-block; margin-top:8px;">Contactar a Hilario</a>
-      <a href="#contacto" class="btn-primary en" style="display:inline-block; margin-top:8px;">Contact Hilario</a>
+    <div class="form-group">
+      <label class="es">WhatsApp o Email</label>
+      <label class="en">WhatsApp or Email</label>
+      <input type="text" id="m-contacto">
     </div>
+    <div class="form-group">
+      <label class="es">Mensaje (opcional)</label>
+      <label class="en">Message (optional)</label>
+      <textarea id="m-msg" rows="3"></textarea>
+    </div>
+    <button class="btn-send" onclick="enviarModal()">
+      <span class="es">Enviar por WhatsApp</span>
+      <span class="en">Send via WhatsApp</span>
+    </button>
   </div>
-</section>
-
-<div class="sep"></div>
-
-
-<!-- ═══════════════════════════════════════
-     PROCESO
-═══════════════════════════════════════ -->
-<section id="proceso">
-  <p class="sec-label es">01 — El Taller</p>
-  <p class="sec-label en">01 — The Workshop</p>
-
-  <h2 class="sec-title es">De la oveja<br>al <em>tapete</em></h2>
-  <h2 class="sec-title en">From the sheep<br>to the <em>rug</em></h2>
-
-  <p class="sec-body es">Para Hilario, el tiempo no depende del tamaño — depende de qué tan complicado sea el diseño. Una pieza pequeña puede tardar de 6 a 9 meses, igual que una de 3 por 5 metros.</p>
-  <p class="sec-body en">For Hilario, time doesn't depend on size — it depends on how complicated the design is. A small piece can take 6 to 9 months, same as a 3-by-5-meter one.</p>
-
-  <div style="display:flex; gap:16px; flex-wrap:wrap; margin:32px 0 48px;">
-    <img class="stitched" src="img/telar-artesano.jpg" alt="Hilario tejiendo en el telar de pedal" loading="lazy" style="flex:1 1 300px; min-width:260px; height:280px; object-fit:cover;">
-    <img class="stitched" src="img/carretes-hilo.jpg" alt="Carretes de hilo — tonos naturales y teñidos, listos para tejer" loading="lazy" style="flex:1 1 300px; min-width:260px; height:280px; object-fit:cover;">
-  </div>
-
-  <div class="pasos">
-    <div class="paso reveal">
-      <div class="paso-num">01</div>
-      <div>
-        <h3 class="es">Trasquila y lavado de lana</h3>
-        <h3 class="en">Shearing and wool washing</h3>
-        <p class="es">Sus ovejas se crían en la sierra, donde el clima favorece su desarrollo y da una fibra más abundante. La lana se lava con jabones naturales para eliminar la grasa y las impurezas del vellón.</p>
-        <p class="en">His sheep are raised in the highlands, where the climate favors their development and yields more abundant fiber. Wool is washed with natural soaps to remove lanolin and fleece impurities.</p>
-      </div>
-    </div>
-    <div class="paso reveal">
-      <div class="paso-num">02</div>
-      <div>
-        <h3 class="es">Cardado</h3>
-        <h3 class="en">Carding</h3>
-        <p class="es">La lana se peina con dos cepillos grandes de madera con clavos de metal — las "cardas". Aquí nace la inspiración: ninguna oveja da el mismo tono, así que al ver cómo sale la lana, Hilario ya va decidiendo qué colores teñir — y de ahí surge el diseño del siguiente tapete.</p>
-        <p class="en">Wool is combed with two large wooden brushes with metal teeth — the "carders." This is where inspiration begins: no two sheep give the same tone, so as the wool comes out, Hilario is already deciding which colors to dye — and from there, the next rug's design takes shape.</p>
-      </div>
-    </div>
-    <div class="paso reveal">
-      <div class="paso-num">03</div>
-      <div>
-        <h3 class="es">Hilado en rueca</h3>
-        <h3 class="en">Spinning on the wheel</h3>
-        <p class="es">La lana cardada se hila en la rueca para crear hilos uniformes. Entre más torcido esté el hilo, más difícil que se deshaga en el telar. La tensión del hilo es un arte en sí mismo — hilos demasiado gruesos o delgados arruinan el tejido final.</p>
-        <p class="en">Carded wool is spun on the wheel to create uniform threads. The tighter the twist, the less likely threads will unravel on the loom. Thread tension is an art in itself — threads too thick or thin ruin the final weave.</p>
-      </div>
-    </div>
-    <div class="paso reveal">
-      <div class="paso-num">04</div>
-      <div>
-        <h3 class="es">Teñido</h3>
-        <h3 class="en">Dyeing</h3>
-        <p class="es">Las madejas de hilo se sumergen en agua hirviendo con el tinte natural y el mordente (alumbre, jugo de limón o sal según el tinte). El tiempo de cocción, la temperatura y la proporción determinan la intensidad del color. Se puede tardar de un día a una semana solo en esta etapa.</p>
-        <p class="en">Yarn skeins are submerged in boiling water with natural dye and mordant (alum, lemon juice, or salt depending on the dye). Cooking time, temperature, and proportion determine color intensity. This stage alone can take from one day to a week.</p>
-      </div>
-    </div>
-    <div class="paso reveal">
-      <div class="paso-num">05</div>
-      <div>
-        <h3 class="es">Montaje del telar y urdimbre</h3>
-        <h3 class="en">Loom setup and warping</h3>
-        <p class="es">El artesano dispone los hilos de urdimbre (los hilos verticales fijos) en el telar de pedal. Este paso define el ancho y la longitud final del tapete. La urdimbre suele ser de algodón — más resistente — mientras que la trama que crea el diseño es de lana teñida.</p>
-        <p class="en">The artisan sets up the warp threads (fixed vertical threads) on the pedal loom. This step defines the final width and length of the rug. The warp is usually cotton — more durable — while the weft that creates the design is dyed wool.</p>
-      </div>
-    </div>
-    <div class="paso reveal">
-      <div class="paso-num">06</div>
-      <div>
-        <h3 class="es">Tejido</h3>
-        <h3 class="en">Weaving</h3>
-        <p class="es">El artesano acciona los pedales con los pies para levantar alternadamente los hilos de urdimbre, mientras pasa la lanzadera con el hilo de trama de mano en mano. Requiere coordinación total entre pies, manos y mente — el diseño complejo vive solo en la memoria del artesano, no en un patrón escrito.</p>
-        <p class="en">The artisan operates the pedals with their feet to alternately raise warp threads, while passing the shuttle with weft thread hand to hand. It requires total coordination between feet, hands, and mind — the complex design lives only in the artisan's memory, not in a written pattern.</p>
-      </div>
-    </div>
-    <div class="paso reveal">
-      <div class="paso-num">07</div>
-      <div>
-        <h3 class="es">Acabado</h3>
-        <h3 class="en">Finishing</h3>
-        <p class="es">Al terminar el tejido, se cortan los hilos sobrantes, se atan los flecos, y el tapete se lava una vez más para fijar los colores y suavizar la lana. Un tapete bien terminado no tiene hilos sueltos visibles por el reverso — revisar el reverso es la primera prueba de calidad.</p>
-        <p class="en">Once weaving is complete, excess threads are trimmed, fringes tied, and the rug is washed once more to set colors and soften the wool. A well-finished rug has no visible loose threads on the back — checking the back is the first quality test.</p>
-      </div>
-    </div>
-  </div>
-
-  <p class="sec-body es" style="margin-top:16px;">Cada día empieza con eso en mente: si hay un tapete en el telar, es continuarlo; si es un diseño nuevo, es concentración total, sin distracciones. Por eso ningún tapete es igual a otro — ni siquiera si pides el mismo diseño. Los tintes naturales y la lana nunca son idénticos de una oveja a otra, así que el color tampoco vuelve a ser exactamente el mismo.</p>
-  <p class="sec-body en" style="margin-top:16px;">Every day starts with that in mind: if there's a rug already on the loom, it's about continuing it; if it's a new design, it's total concentration, no distractions. That's why no two rugs are ever the same — not even if you order the same design again. Natural dyes and wool are never identical from one sheep to the next, so the color never comes out exactly the same either.</p>
-</section>
-
-<blockquote>
-  <span class="es">Cuando estoy cardando la lana, el tono que me da ya me dice qué colores se verán bien — y de ahí nace el diseño del siguiente tapete.</span>
-  <span class="en">When I'm carding the wool, the tone it gives me already tells me which colors will work — and from there, the design of the next rug is born.</span>
-  <cite><span class="es">Hilario, 14 Hilos de Lana</span><span class="en">Hilario, 14 Hilos de Lana</span></cite>
-</blockquote>
-
-<div style="max-width:680px; margin:0 auto; padding:0 24px 80px; text-align:center;">
-  <p class="es" style="font-family:'Cormorant Garamond', serif; font-size:1.15rem; color:var(--ink-soft);">¿Quieres conocer los 2,500 años de tradición zapoteca detrás de cada tapete — y cómo distinguir uno auténtico?</p>
-  <p class="en" style="font-family:'Cormorant Garamond', serif; font-size:1.15rem; color:var(--ink-soft);">Want to learn the 2,500 years of Zapotec tradition behind every rug — and how to spot an authentic one?</p>
-  <a href="historia.html" class="btn-outline es" style="display:inline-block; margin-top:16px;">Historia y tradición</a>
-  <a href="historia.html" class="btn-outline en" style="display:inline-block; margin-top:16px;">History and tradition</a>
 </div>
 
-<div class="sep"></div>
-
-
-<!-- ═══════════════════════════════════════
-     GALERÍA
-═══════════════════════════════════════ -->
-<section id="galeria">
-  <p class="sec-label es">02 — Galería</p>
-  <p class="sec-label en">02 — Gallery</p>
-
-  <h2 class="sec-title es">El taller<br>por <em>dentro</em></h2>
-  <h2 class="sec-title en">The workshop<br>from <em>within</em></h2>
-
-  <p class="sec-body es">Imágenes del proceso real — desde el cardado de la lana hasta el tapete terminado.</p>
-  <p class="sec-body en">Images of the real process — from wool carding to the finished rug.</p>
-
-  <div class="galeria-grid">
-    <div class="g-item reveal">
-      <img src="img/tapete-greca-azul.jpg" alt="Tapete con greca zapoteca en tonos azules" loading="lazy">
-      <div class="g-caption es">Greca en azul índigo</div>
-      <div class="g-caption en">Indigo step-fret</div>
-    </div>
-    <div class="g-item reveal">
-      <img src="img/tapete-base-tarjeta.jpg" alt="Detalle de tapete con greca y diamante central" loading="lazy">
-      <div class="g-caption es">Detalle de greca</div>
-      <div class="g-caption en">Step-fret detail</div>
-    </div>
-    <div class="g-item reveal">
-      <img src="img/carretes-hilo.jpg" alt="Carretes de hilo teñido" loading="lazy">
-      <div class="g-caption es">Hilo teñido y listo</div>
-      <div class="g-caption en">Dyed thread, ready</div>
-    </div>
-    <div class="g-item reveal">
-      <img src="img/tapete-telar.jpg" alt="Tapete degradado en el telar al aire libre" loading="lazy">
-      <div class="g-caption es">Tapete en su ambiente</div>
-      <div class="g-caption en">Rug in context</div>
-    </div>
-    <div class="g-item reveal">
-      <img src="img/familia.jpg" alt="Cuatro generaciones de tejedores detrás de Hilario" loading="lazy">
-      <div class="g-caption es">Cuatro generaciones</div>
-      <div class="g-caption en">Four generations</div>
-    </div>
-  </div></section>
-
-<div class="sep"></div>
 
 <!-- ═══════════════════════════════════════
      CONTACTO
@@ -1108,16 +979,16 @@
     <circle cx="43" cy="5" r="2.2" fill="#b3822e"/>
     <circle cx="39" cy="3" r="1.4" fill="#b23a2e"/>
   </svg>
-  <p class="sec-label es">03 — Contacto</p>
-  <p class="sec-label en">03 — Contact</p>
+  <p class="sec-label es">01 — Contacto</p>
+  <p class="sec-label en">01 — Contact</p>
 
   <h2 class="sec-title es">¿Buscas un<br>tapete <em>específico</em>?</h2>
   <h2 class="sec-title en">Looking for a<br><em>specific</em> rug?</h2>
 
   <div class="contacto-wrap">
     <div class="contact-info">
-      <p class="es">Este es el contacto directo con Hilario — sin intermediarios. Cuéntale qué buscas: tamaño, diseño, tintes, o un nuevo encargo.</p>
-      <p class="en">This is the direct line to Hilario — no intermediaries. Tell him what you're looking for: size, design, dyes, or a new commission.</p>
+      <p class="es">Este es el contacto directo con la familia que tejió tu tapete — sin intermediarios. Cuéntanos qué buscas: tamaño, diseño, tintes, o un nuevo encargo.</p>
+      <p class="en">This is the direct line to the family who wove your rug — no intermediaries. Tell us what you're looking for: size, design, dyes, or a new commission.</p>
 
       <div class="dato">
         <span class="dato-label es">Origen</span>
@@ -1192,11 +1063,10 @@
   <p class="footer-place">Tapetes Artesanales · Oaxaca, México</p>
 
   <ul class="footer-links">
-    <li><a href="#familia"><span class="es">Hilario</span><span class="en">Hilario</span></a></li>
+    <li><a href="index.html"><span class="es">Inicio</span><span class="en">Home</span></a></li>
+    <li><a href="index.html#familia"><span class="es">Hilario</span><span class="en">Hilario</span></a></li>
     <li><a href="historia.html"><span class="es">Historia</span><span class="en">History</span></a></li>
-    <li><a href="#proceso"><span class="es">El Taller</span><span class="en">The Workshop</span></a></li>
-    <li><a href="#galeria"><span class="es">Galería</span><span class="en">Gallery</span></a></li>
-    <li><a href="tienda.html"><span class="es">Tienda</span><span class="en">Shop</span></a></li>
+    <li><a href="#tienda"><span class="es">Tienda</span><span class="en">Shop</span></a></li>
     <li><a href="#contacto"><span class="es">Contacto</span><span class="en">Contact</span></a></li>
   </ul>
 
