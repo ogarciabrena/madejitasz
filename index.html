@@ -155,10 +155,8 @@
     .hero {
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      text-align: center;
       padding: calc(var(--nav-h) + 40px) 24px 80px;
       position: relative;
       overflow: hidden;
@@ -169,6 +167,41 @@
       background:
         radial-gradient(ellipse 60% 40% at 50% 60%, rgba(139,26,26,0.12) 0%, transparent 70%),
         radial-gradient(ellipse 40% 60% at 20% 30%, rgba(44,74,138,0.08) 0%, transparent 60%);
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 56px;
+      align-items: center;
+      max-width: 1180px;
+      width: 100%;
+      text-align: left;
+    }
+    .hero-photo {
+      position: relative;
+      border-radius: 4px;
+      overflow: hidden;
+      aspect-ratio: 4 / 5;
+      box-shadow: 0 30px 70px rgba(0,0,0,0.5);
+      opacity: 0;
+      animation: fadeUp 1s 0.3s forwards;
+    }
+    .hero-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+    .hero-photo-tag {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      padding: 22px 20px 16px;
+      background: linear-gradient(transparent, rgba(8,4,2,0.92));
+      font-size: 0.68rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--cream);
+    }
+    @media (max-width: 860px) {
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero-photo { max-width: 340px; margin: 0 auto; order: -1; }
+      .hero-sub { margin: 0 auto 40px !important; }
+      .hero-ctas { justify-content: center !important; }
     }
     .hero-tag {
       font-size: 0.7rem;
@@ -197,14 +230,14 @@
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(1rem, 3vw, 1.4rem);
       color: var(--muted);
-      max-width: 560px;
-      margin: 0 auto 40px;
+      max-width: 520px;
+      margin: 0 0 40px;
       opacity: 0;
       animation: fadeUp 1s 0.6s forwards;
     }
     .hero-ctas {
       display: flex; gap: 16px; flex-wrap: wrap;
-      justify-content: center;
+      justify-content: flex-start;
       opacity: 0;
       animation: fadeUp 1s 0.8s forwards;
     }
@@ -421,10 +454,15 @@
     }
     .simbolo-card p { font-size: 0.85rem; color: var(--text); line-height: 1.6; }
 
-    /* ── SEPARADOR ── */
+    /* ── SEPARADOR — motivo de greca zapoteca ── */
     .sep {
-      width: 100%; max-width: 1100px; margin: 0 auto;
-      height: 1px; background: rgba(139,26,26,0.2);
+      width: 100%; max-width: 480px; margin: 0 auto;
+      height: 12px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='12' viewBox='0 0 32 12'%3E%3Cpath d='M0 10 L0 6 L4 6 L4 2 L8 2 L8 10 L12 10 L12 6 L16 6 L16 2 L20 2 L20 10 L24 10 L24 6 L28 6 L28 2 L32 2' fill='none' stroke='%23c0392b' stroke-width='1.4'/%3E%3C/svg%3E");
+      background-repeat: repeat-x;
+      background-position: center;
+      background-size: 32px 12px;
+      opacity: 0.5;
     }
 
     /* ── CONTACTO ── */
@@ -580,7 +618,7 @@
       content: '';
       display: block;
       width: 0; height: 1px;
-      background: var(--cochinilla-light);
+      background: var(--gold);
       margin-top: 6px;
       transition: width 0.8s ease;
     }
@@ -770,7 +808,7 @@
      NAV
 ═══════════════════════════════════════ -->
 <nav>
-  <a href="#top" class="logo">TEOTITLÁN <span>✦</span> DEL VALLE</a>
+  <a href="#top" class="logo">TEOTITLÁN <span>◈</span> DEL VALLE</a>
   <div class="nav-right">
     <div class="lang-btns">
       <button class="lb on" onclick="setL('es')">ES</button>
@@ -799,20 +837,30 @@
      HERO
 ═══════════════════════════════════════ -->
 <section class="hero" id="top">
-  <p class="hero-tag es">Teotitlán del Valle · Sierra Juárez · Oaxaca · 2,500 años de tradición</p>
-  <p class="hero-tag en">Teotitlán del Valle · Sierra Juárez · Oaxaca · 2,500 years of tradition</p>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <p class="hero-tag es">Teotitlán del Valle · Sierra Juárez · Oaxaca · 2,500 años de tradición</p>
+      <p class="hero-tag en">Teotitlán del Valle · Sierra Juárez · Oaxaca · 2,500 years of tradition</p>
 
-  <h1 class="hero-title es">El hilo que<br><em>no miente</em></h1>
-  <h1 class="hero-title en">The thread that<br><em>never lies</em></h1>
+      <h1 class="hero-title es">El hilo que<br><em>no miente</em></h1>
+      <h1 class="hero-title en">The thread that<br><em>never lies</em></h1>
 
-  <p class="hero-sub es">Cada tapete de Teotitlán lleva décadas de conocimiento zapoteca en cada cruce de lana. No es decoración. Es memoria viva.</p>
-  <p class="hero-sub en">Every Teotitlán rug carries decades of Zapotec knowledge in each wool crossing. It's not decoration. It's living memory.</p>
+      <p class="hero-sub es">Escaneaste el tapete de una familia de tejedores en Teotitlán del Valle. Esto no es decoración — es memoria viva, hecha a mano.</p>
+      <p class="hero-sub en">You scanned the rug of a weaving family in Teotitlán del Valle. This isn't decoration — it's living memory, made by hand.</p>
 
-  <div class="hero-ctas">
-    <a href="#historia" class="btn-primary es">Descubrir</a>
-    <a href="#historia" class="btn-primary en">Discover</a>
-    <a href="#contacto" class="btn-outline es">Conseguir un tapete</a>
-    <a href="#contacto" class="btn-outline en">Get a rug</a>
+      <div class="hero-ctas">
+        <a href="#familia" class="btn-primary es">Conocer a la familia</a>
+        <a href="#familia" class="btn-primary en">Meet the family</a>
+        <a href="#contacto" class="btn-outline es">Conseguir un tapete</a>
+        <a href="#contacto" class="btn-outline en">Get a rug</a>
+      </div>
+    </div>
+
+    <div class="hero-photo">
+      <img src="img/familia.jpg" alt="Familia de tejedores de Teotitlán del Valle" loading="eager">
+      <div class="hero-photo-tag es">La familia detrás de tu tapete</div>
+      <div class="hero-photo-tag en">The family behind your rug</div>
+    </div>
   </div>
 
   <div class="scroll-ticker">
@@ -874,11 +922,8 @@
   <h2 class="sec-title es">2,500 años de hilo<br>que <em>no se rompe</em></h2>
   <h2 class="sec-title en">2,500 years of thread<br>that <em>never breaks</em></h2>
 
-  <p class="sec-body es">Teotitlán del Valle — cuyo nombre zapoteco es <em>Xigie</em>, "bajo la piedra" — fue la primera ciudad fundada por los zapotecos en 1465, según Fray Francisco de Burgoa. Su tradición textil no empezó con los españoles: empezó milenios antes, cuando las mujeres tejían en telares de cintura fibras del maguey y el algodón silvestre.</p>
-  <p class="sec-body en">Teotitlán del Valle — whose Zapotec name is <em>Xigie</em>, "under the stone" — was the first city founded by the Zapotecs in 1465, according to Fray Francisco de Burgoa. Its textile tradition didn't start with the Spanish: it began millennia before, when women wove maguey fibers and wild cotton on backstrap looms.</p>
-
-  <p class="sec-body es">Hoy, en un pueblo de 6,000 habitantes, casi cada familia teje. No es una atracción turística — es la economía, la identidad, el lenguaje visual de una cultura que sobrevivió la conquista y la industrialización manteniéndose fiel a sus raíces.</p>
-  <p class="sec-body en">Today, in a town of 6,000 inhabitants, almost every family weaves. It's not a tourist attraction — it's the economy, the identity, the visual language of a culture that survived conquest and industrialization by staying true to its roots.</p>
+  <p class="sec-body es">Teotitlán del Valle — <em>Xigie</em>, "bajo la piedra" en zapoteco — teje desde antes de la conquista, cuando las mujeres usaban telares de cintura. Hoy casi cada familia del pueblo sigue tejiendo: no es turismo, es identidad.</p>
+  <p class="sec-body en">Teotitlán del Valle — <em>Xigie</em>, "under the stone" in Zapotec — has been weaving since before the conquest, when women used backstrap looms. Today almost every family in town still weaves: it's not tourism, it's identity.</p>
 
   <div class="timeline">
     <div class="tli reveal-left">
@@ -933,8 +978,8 @@
   <h2 class="sec-title es">El color no viene<br>de una <em>fábrica</em></h2>
   <h2 class="sec-title en">The color doesn't come<br>from a <em>factory</em></h2>
 
-  <p class="sec-body es">Los tintes naturales son lo que hizo famoso a Teotitlán. El proceso es lento, estacional y caro — pero los colores están <em>vivos</em> y envejecen con una dignidad que ningún colorante sintético puede replicar. Un tapete con tinte natural de veinte años luce mejor que el día en que salió del telar.</p>
-  <p class="sec-body en">Natural dyes are what made Teotitlán famous. The process is slow, seasonal and expensive — but the colors are <em>alive</em> and age with a dignity no synthetic dye can replicate. A natural-dye rug from twenty years ago looks better than the day it left the loom.</p>
+  <p class="sec-body es">Los tintes naturales son lo que hizo famoso a Teotitlán: lentos, caros, pero <em>vivos</em>. Un tapete con tinte natural envejece mejor — no se decolora, madura.</p>
+  <p class="sec-body en">Natural dyes are what made Teotitlán famous: slow, costly, but <em>alive</em>. A natural-dye rug ages better — it doesn't fade, it matures.</p>
 
   <div class="tintes-grid">
     <div class="tinte-card reveal">
@@ -1087,6 +1132,12 @@
   </div>
 </section>
 
+<blockquote>
+  <span class="es">Siete pasos, semanas de trabajo — así lo hace esta familia, sin atajos.</span>
+  <span class="en">Seven steps, weeks of work — this is how this family does it, no shortcuts.</span>
+  <cite><span class="es">La familia detrás de tu tapete</span><span class="en">The family behind your rug</span></cite>
+</blockquote>
+
 <div class="sep"></div>
 
 <!-- ═══════════════════════════════════════
@@ -1099,11 +1150,8 @@
   <h2 class="sec-title es">No toda la lana<br>es <em>igual</em></h2>
   <h2 class="sec-title en">Not all wool<br>is <em>equal</em></h2>
 
-  <p class="sec-body es">El mercado de tapetes en Oaxaca tiene un problema honesto: la mitad de los "tapetes de Teotitlán" vendidos en mercados turísticos son tapetes industriales importados, tapetes con tintes sintéticos, o piezas producidas en serie que no tienen nada que ver con el proceso artesanal. No es ilegal. Pero sí es un engaño cuando se venden como auténticos.</p>
-  <p class="sec-body en">The rug market in Oaxaca has an honest problem: half the "Teotitlán rugs" sold in tourist markets are imported industrial rugs, synthetic-dye rugs, or mass-produced pieces with nothing to do with the artisanal process. It's not illegal. But it is deceptive when sold as authentic.</p>
-
-  <p class="sec-body es">Si compras un tapete industrial de $800 pesos sabiendo lo que es — perfecto. Pero si pagas $3,000 creyendo que compras artesanía auténtica de un maestro tejedor y no es así — te engañaron. Este es el mismo problema del mezcal industrial vendido como artesanal.</p>
-  <p class="sec-body en">If you buy an $800-peso industrial rug knowing what it is — fine. But if you pay $3,000 believing you're buying authentic craftsmanship from a master weaver and that's not true — you were deceived. This is the exact same problem as industrial mezcal sold as artisanal.</p>
+  <p class="sec-body es">La mitad de los "tapetes de Teotitlán" en mercados turísticos son piezas industriales o con tintes sintéticos vendidas como auténticas. No es ilegal — pero sí es un engaño.</p>
+  <p class="sec-body en">Half the "Teotitlán rugs" sold in tourist markets are industrial or synthetic-dye pieces passed off as authentic. It's not illegal — but it is deceptive.</p>
 
   <div class="tabla-comparativa">
     <div class="col-header autentico es">✦ Tapete Auténtico</div>
@@ -1185,8 +1233,8 @@
   <h2 class="sec-title es">No son patrones.<br>Son <em>cosmología</em>.</h2>
   <h2 class="sec-title en">They're not patterns.<br>They're <em>cosmology</em>.</h2>
 
-  <p class="sec-body es">Los diseños en los tapetes de Teotitlán no son decorativos en el sentido vacío de la palabra. Cada símbolo viene de siglos de historia zapoteca — de Mitla, de Monte Albán, de la relación entre el pueblo y el cosmos. Cuando compras un tapete con grecas zapotecas, compras dos mil años de significado.</p>
-  <p class="sec-body en">The designs in Teotitlán rugs are not decorative in the empty sense of the word. Each symbol comes from centuries of Zapotec history — from Mitla, from Monte Albán, from the relationship between the people and the cosmos. When you buy a rug with Zapotec step-frets, you buy two thousand years of meaning.</p>
+  <p class="sec-body es">Cada símbolo en un tapete de Teotitlán viene de siglos de cosmología zapoteca — de Mitla, de Monte Albán. No es decoración: es significado tejido a mano.</p>
+  <p class="sec-body en">Every symbol in a Teotitlán rug comes from centuries of Zapotec cosmology — from Mitla, from Monte Albán. It's not decoration: it's meaning woven by hand.</p>
 
   <div class="simbolos-grid">
     <div class="simbolo-card reveal">
@@ -1399,8 +1447,8 @@
 
   <div class="contacto-wrap">
     <div class="contact-info">
-      <p class="es">Trabajamos directamente con artesanos de Teotitlán del Valle. Cada pieza es encargo directo — diseño, tamaño, tintes a tu elección. Sin intermediarios. Sin precios inflados. El artesano recibe lo justo.</p>
-      <p class="en">We work directly with artisans from Teotitlán del Valle. Each piece is a direct commission — design, size, dyes of your choice. No intermediaries. No inflated prices. The artisan receives what's fair.</p>
+      <p class="es">Este es el contacto directo con la familia que tejió tu tapete — sin intermediarios. Cuéntanos qué buscas: tamaño, diseño, tintes, o un nuevo encargo.</p>
+      <p class="en">This is the direct line to the family who wove your rug — no intermediaries. Tell us what you're looking for: size, design, dyes, or a new commission.</p>
 
       <div class="dato">
         <span class="dato-label es">Origen</span>
@@ -1470,7 +1518,7 @@
      FOOTER — SKILL: <ul> no <nav> para evitar conflictos
 ═══════════════════════════════════════ -->
 <footer>
-  <div class="footer-logo">TEOTITLÁN <span>✦</span> DEL VALLE</div>
+  <div class="footer-logo">TEOTITLÁN <span>◈</span> DEL VALLE</div>
   <p class="footer-place">Tapetes Artesanales · Oaxaca, México</p>
 
   <ul class="footer-links">
