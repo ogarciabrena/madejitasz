@@ -12,30 +12,38 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
-    /* ── VARIABLES ── */
+    /* ── VARIABLES — paleta cálida inspirada en el tapete real ── */
     :root {
-      --bg:       #0e0906;
-      --bg2:      #160d08;
+      --paper:      #f6ecd9;
+      --paper2:     #eee0c4;
+      --ink:        #241a10;
+      --ink-soft:   #5c4a38;
+      --ink-faint:  #8d7c68;
       --cochinilla: #8b1a1a;
-      --cochinilla-light: #c0392b;
-      --indigo:   #1a2a4a;
-      --indigo-light: #2c4a8a;
-      --tierra:   #6b4226;
-      --cream:    #f2e8d9;
-      --gold:     #c8922a;
-      --text:     #d4c4b0;
-      --muted:    #7a6a5a;
-      --nav-h:    64px;
+      --cochinilla-light: #b23a2e;
+      --indigo:     #1f3a63;
+      --indigo-light: #3a5a96;
+      --gold:       #b3822e;
+      --moss:       #6b7a3f;
+      --line:       rgba(139,26,26,0.18);
+      --night:      #1c130c;
+      --night2:     #2a1c12;
+      --cream:      #f2e8d9;
+      --muted-dark: #b8a68e;
+      --nav-h:      64px;
     }
 
     /* ── RESET ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
-      background: var(--bg);
-      color: var(--text);
+      background:
+        repeating-linear-gradient(45deg, rgba(139,26,26,0.03) 0px, rgba(139,26,26,0.03) 1px, transparent 1px, transparent 7px),
+        repeating-linear-gradient(-45deg, rgba(31,58,99,0.025) 0px, rgba(31,58,99,0.025) 1px, transparent 1px, transparent 7px),
+        var(--paper);
+      color: var(--ink-soft);
       font-family: 'Inter', sans-serif;
-      font-weight: 300;
+      font-weight: 400;
       line-height: 1.7;
     }
 
@@ -52,77 +60,67 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       height: var(--nav-h);
-      background: rgba(14,9,6,0.92);
+      background: rgba(246,236,217,0.9);
       backdrop-filter: blur(12px);
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 16px;
       padding: 0 24px;
       z-index: 1000;
-      border-bottom: 1px solid rgba(139,26,26,0.2);
+      border-bottom: 1px solid var(--line);
+      transition: transform 0.35s ease;
     }
+    nav.nav-hide { transform: translateY(-100%); }
     .logo {
       font-family: 'Playfair Display', serif;
       font-size: 1.2rem;
-      color: var(--cream);
+      color: var(--ink);
       text-decoration: none;
       letter-spacing: 0.08em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
     }
     .logo span { color: var(--cochinilla-light); }
 
-    /* SKILL: solo UN nav-links, oculto por defecto */
-    .nav-links {
+    /* Menú desktop — 5 items, oculto en móvil (usa el hamburguesa) */
+    .nav-menu {
       display: none;
-      flex-direction: column;
       list-style: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(8,4,2,0.98);
-      align-items: center;
-      justify-content: center;
-      gap: 40px;
-      z-index: 1001;
+      gap: 28px;
+      flex-shrink: 1;
+      min-width: 0;
     }
-    .nav-links.open {
-      display: flex !important;
-    }
-    @keyframes navFadeIn {
-      from { opacity: 0; transform: translateY(-8px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .nav-links li { list-style: none; }
-    .nav-links a {
-      color: var(--cream);
+    .nav-menu a {
+      color: var(--ink-soft);
       text-decoration: none;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem;
-      letter-spacing: 0.06em;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
       transition: color 0.2s;
-      display: block;
+      white-space: nowrap;
     }
-    .nav-links a:hover { color: var(--cochinilla-light); }
-    .nav-close {
-      position: absolute; top: 20px; right: 20px;
-      background: none; border: none;
-      color: var(--muted); font-size: 2.5rem;
-      cursor: pointer; line-height: 1;
-      transition: color 0.2s; z-index: 1002;
-    }
-    .nav-close:hover { color: var(--cream); }
-
-    /* Desktop nav */
+    .nav-menu a:hover { color: var(--cochinilla-light); }
     @media (min-width: 768px) {
-      .nav-links {
-        display: flex !important;
-        flex-direction: row;
-        position: static;
-        background: none;
-        gap: 24px;
-        animation: none !important;
-      }
-      .nav-links a { font-size: 0.8rem; letter-spacing: 0.12em; }
-      .nav-close { display: none !important; }
-      .hamburger { display: none !important; }
+      .nav-menu { display: flex; }
+    }
+
+    /* Nav right: idioma + hamburger */
+    .nav-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    .lang-btns { display: flex; gap: 4px; }
+    .lb {
+      background: none; border: 1px solid var(--ink-faint);
+      color: var(--ink-soft); padding: 4px 10px;
+      font-size: 0.7rem; letter-spacing: 0.1em;
+      cursor: pointer; border-radius: 2px;
+      transition: all 0.2s;
+    }
+    .lb.on {
+      border-color: var(--cochinilla-light);
+      color: var(--cochinilla-light);
     }
 
     .hamburger {
@@ -132,23 +130,14 @@
     }
     .hamburger span {
       display: block; width: 24px; height: 2px;
-      background: var(--cream); border-radius: 2px;
+      background: var(--ink); border-radius: 2px;
       transition: all 0.3s;
     }
-
-    /* Nav right: idioma + hamburger */
-    .nav-right { display: flex; align-items: center; gap: 12px; }
-    .lang-btns { display: flex; gap: 4px; }
-    .lb {
-      background: none; border: 1px solid var(--muted);
-      color: var(--muted); padding: 4px 10px;
-      font-size: 0.7rem; letter-spacing: 0.1em;
-      cursor: pointer; border-radius: 2px;
-      transition: all 0.2s;
+    @media (min-width: 768px) {
+      .hamburger { display: none !important; }
     }
-    .lb.on {
-      border-color: var(--cochinilla-light);
-      color: var(--cochinilla-light);
+    @media (max-width: 420px) {
+      .logo { font-size: 0.95rem; letter-spacing: 0.04em; }
     }
 
     /* ── HERO ── */
@@ -165,8 +154,17 @@
       content: '';
       position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse 60% 40% at 50% 60%, rgba(139,26,26,0.12) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 60% at 20% 30%, rgba(44,74,138,0.08) 0%, transparent 60%);
+        radial-gradient(ellipse 60% 40% at 85% 20%, rgba(179,130,46,0.10) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 50% at 10% 80%, rgba(31,58,99,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 50% 100%, rgba(139,26,26,0.06) 0%, transparent 70%);
+    }
+    .hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: url('img/tapete-telar.jpg') center/cover no-repeat;
+      opacity: 0.10;
+      mix-blend-mode: multiply;
+      z-index: -1;
     }
     .hero-inner {
       display: grid;
@@ -182,7 +180,7 @@
       border-radius: 4px;
       overflow: hidden;
       aspect-ratio: 4 / 5;
-      box-shadow: 0 30px 70px rgba(0,0,0,0.5);
+      box-shadow: 0 30px 60px rgba(36,26,16,0.28);
       opacity: 0;
       animation: fadeUp 1s 0.3s forwards;
     }
@@ -193,7 +191,7 @@
     .hero-photo-tag {
       position: absolute; left: 0; right: 0; bottom: 0;
       padding: 22px 20px 16px;
-      background: linear-gradient(transparent, rgba(8,4,2,0.92));
+      background: linear-gradient(transparent, rgba(8,4,2,0.88));
       font-size: 0.68rem; letter-spacing: 0.15em;
       text-transform: uppercase; color: var(--cream);
     }
@@ -216,7 +214,7 @@
       font-family: 'Playfair Display', serif;
       font-size: clamp(3rem, 10vw, 7rem);
       font-weight: 700;
-      color: var(--cream);
+      color: var(--ink);
       line-height: 1.05;
       margin-bottom: 16px;
       opacity: 0;
@@ -229,7 +227,7 @@
     .hero-sub {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(1rem, 3vw, 1.4rem);
-      color: var(--muted);
+      color: var(--ink-soft);
       max-width: 520px;
       margin: 0 0 40px;
       opacity: 0;
@@ -254,21 +252,21 @@
     .btn-primary:hover { background: var(--cochinilla-light); }
     .btn-outline {
       background: none;
-      border: 1px solid var(--muted);
-      color: var(--cream); padding: 14px 32px;
+      border: 1px solid var(--ink-faint);
+      color: var(--ink); padding: 14px 32px;
       font-size: 0.8rem; letter-spacing: 0.15em;
       text-transform: uppercase;
       text-decoration: none;
       border-radius: 2px;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, background 0.2s;
     }
-    .btn-outline:hover { border-color: var(--cream); }
+    .btn-outline:hover { border-color: var(--ink); background: rgba(36,26,16,0.05); }
 
     .scroll-ticker {
       position: absolute; bottom: 0; left: 0; right: 0;
       overflow: hidden; padding: 12px 0;
-      border-top: 1px solid rgba(139,26,26,0.2);
-      background: rgba(14,9,6,0.6);
+      border-top: 1px solid var(--line);
+      background: rgba(238,224,196,0.7);
     }
     .ticker-inner {
       display: flex; gap: 48px;
@@ -277,9 +275,16 @@
     }
     .ticker-inner span {
       font-size: 0.7rem; letter-spacing: 0.2em;
-      color: var(--muted); text-transform: uppercase;
+      color: var(--ink-soft); text-transform: uppercase;
     }
-    .ticker-inner span strong { color: var(--cochinilla-light); }
+    .ticker-inner span strong {
+      color: #c5453a;
+      font-weight: 700;
+      text-shadow:
+        0 1px 0 #7a140f,
+        0 2px 0 #6b110c,
+        0 2.5px 2px rgba(36,26,16,0.35);
+    }
     @keyframes ticker {
       from { transform: translateX(0); }
       to { transform: translateX(-50%); }
@@ -295,13 +300,13 @@
     .sec-title {
       font-family: 'Playfair Display', serif;
       font-size: clamp(2rem, 5vw, 3.5rem);
-      color: var(--cream);
+      color: var(--ink);
       line-height: 1.1;
       margin-bottom: 24px;
     }
     .sec-title em { font-style: italic; color: var(--cochinilla-light); }
     .sec-body {
-      font-size: 1rem; color: var(--text);
+      font-size: 1rem; color: var(--ink-soft);
       max-width: 680px; line-height: 1.8;
       margin-bottom: 16px;
     }
@@ -313,13 +318,13 @@
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.4rem;
       font-style: italic;
-      color: var(--cream);
+      color: var(--ink);
       text-align: center;
     }
     blockquote cite {
       display: block; margin-top: 12px;
       font-size: 0.75rem; letter-spacing: 0.15em;
-      color: var(--muted); font-style: normal;
+      color: var(--ink-faint); font-style: normal;
     }
 
     /* ── HISTORIA — TIMELINE ── */
@@ -328,7 +333,7 @@
       display: grid; grid-template-columns: 100px 1fr;
       gap: 24px; margin-bottom: 48px;
       padding-bottom: 48px;
-      border-bottom: 1px solid rgba(139,26,26,0.15);
+      border-bottom: 1px solid var(--line);
     }
     .tli:last-child { border-bottom: none; }
     .tli-date {
@@ -338,34 +343,37 @@
     }
     .tli h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.2rem; color: var(--cream);
+      font-size: 1.2rem; color: var(--ink);
       margin-bottom: 8px;
     }
-    .tli p { font-size: 0.95rem; color: var(--text); }
+    .tli p { font-size: 0.95rem; color: var(--ink-soft); }
 
     /* ── TINTES — GRID ── */
     .tintes-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 2px; margin-top: 48px;
+      background: var(--line);
     }
     .tinte-card {
       padding: 32px 24px;
+      background: var(--paper);
       display: flex; flex-direction: column; gap: 12px;
     }
     .tinte-swatch {
       width: 48px; height: 48px; border-radius: 50%;
       margin-bottom: 4px;
+      box-shadow: 0 4px 14px rgba(36,26,16,0.18);
     }
     .tinte-card h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.1rem; color: var(--cream);
+      font-size: 1.1rem; color: var(--ink);
     }
     .tinte-card .tinte-source {
       font-size: 0.75rem; letter-spacing: 0.1em;
-      color: var(--muted); text-transform: uppercase;
+      color: var(--ink-faint); text-transform: uppercase;
     }
-    .tinte-card p { font-size: 0.9rem; color: var(--text); line-height: 1.6; }
+    .tinte-card p { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.6; }
 
     /* ── PROCESO — PASOS ── */
     .pasos { margin-top: 64px; }
@@ -376,15 +384,15 @@
     }
     .paso-num {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2.5rem; color: rgba(139,26,26,0.3);
+      font-size: 2.5rem; color: rgba(139,26,26,0.28);
       font-weight: 700; line-height: 1;
     }
     .paso h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.15rem; color: var(--cream);
+      font-size: 1.15rem; color: var(--ink);
       margin-bottom: 8px;
     }
-    .paso p { font-size: 0.95rem; color: var(--text); }
+    .paso p { font-size: 0.95rem; color: var(--ink-soft); }
 
     /* ── JUZGAR — COMPARATIVA ── */
     .tabla-comparativa {
@@ -392,8 +400,8 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 2px;
-      background: rgba(139,26,26,0.1);
-      border: 1px solid rgba(139,26,26,0.2);
+      background: var(--line);
+      border: 1px solid var(--line);
     }
     .col-header {
       padding: 20px 24px;
@@ -401,38 +409,38 @@
       text-transform: uppercase;
       font-weight: 500;
     }
-    .col-header.autentico { background: rgba(139,26,26,0.15); color: var(--cochinilla-light); }
-    .col-header.industrial { background: rgba(22,13,8,0.8); color: var(--muted); }
+    .col-header.autentico { background: rgba(139,26,26,0.10); color: var(--cochinilla); }
+    .col-header.industrial { background: var(--paper2); color: var(--ink-faint); }
     .comp-row {
       display: contents;
     }
     .comp-cell {
       padding: 16px 24px;
       font-size: 0.9rem;
-      border-top: 1px solid rgba(139,26,26,0.1);
+      background: var(--paper);
     }
-    .comp-cell.autentico { background: rgba(139,26,26,0.05); color: var(--text); }
-    .comp-cell.industrial { background: rgba(14,9,6,0.6); color: var(--muted); }
-    .comp-cell strong { color: var(--cream); }
+    .comp-cell.autentico { color: var(--ink-soft); }
+    .comp-cell.industrial { background: var(--paper2); color: var(--ink-faint); }
+    .comp-cell strong { color: var(--ink); }
 
     .preguntas {
       margin-top: 48px;
       padding: 40px;
-      background: rgba(139,26,26,0.08);
-      border: 1px solid rgba(139,26,26,0.2);
+      background: rgba(139,26,26,0.06);
+      border: 1px solid var(--line);
       border-radius: 2px;
     }
     .preguntas h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.3rem; color: var(--cream);
+      font-size: 1.3rem; color: var(--ink);
       margin-bottom: 24px;
     }
     .preguntas ol {
       padding-left: 20px;
       display: flex; flex-direction: column; gap: 12px;
     }
-    .preguntas li { font-size: 0.95rem; color: var(--text); }
-    .preguntas li strong { color: var(--cochinilla-light); }
+    .preguntas li { font-size: 0.95rem; color: var(--ink-soft); }
+    .preguntas li strong { color: var(--cochinilla); }
 
     /* ── SÍMBOLOS ZAPOTECOS ── */
     .simbolos-grid {
@@ -442,27 +450,27 @@
     }
     .simbolo-card {
       padding: 28px;
-      background: rgba(22,13,8,0.8);
-      border: 1px solid rgba(139,26,26,0.15);
+      background: var(--paper2);
+      border: 1px solid var(--line);
       border-radius: 2px;
     }
-    .simbolo-icon { font-size: 2rem; margin-bottom: 12px; }
+    .simbolo-icon { font-size: 2rem; margin-bottom: 12px; color: var(--cochinilla-light); }
     .simbolo-card h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 1rem; color: var(--cream);
+      font-size: 1rem; color: var(--ink);
       margin-bottom: 8px;
     }
-    .simbolo-card p { font-size: 0.85rem; color: var(--text); line-height: 1.6; }
+    .simbolo-card p { font-size: 0.85rem; color: var(--ink-soft); line-height: 1.6; }
 
     /* ── SEPARADOR — motivo de greca zapoteca ── */
     .sep {
       width: 100%; max-width: 480px; margin: 0 auto;
       height: 12px;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='12' viewBox='0 0 32 12'%3E%3Cpath d='M0 10 L0 6 L4 6 L4 2 L8 2 L8 10 L12 10 L12 6 L16 6 L16 2 L20 2 L20 10 L24 10 L24 6 L28 6 L28 2 L32 2' fill='none' stroke='%23c0392b' stroke-width='1.4'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='12' viewBox='0 0 32 12'%3E%3Cpath d='M0 10 L0 6 L4 6 L4 2 L8 2 L8 10 L12 10 L12 6 L16 6 L16 2 L20 2 L20 10 L24 10 L24 6 L28 6 L28 2 L32 2' fill='none' stroke='%23b23a2e' stroke-width='1.4'/%3E%3C/svg%3E");
       background-repeat: repeat-x;
       background-position: center;
       background-size: 32px 12px;
-      opacity: 0.5;
+      opacity: 0.55;
     }
 
     /* ── CONTACTO ── */
@@ -474,32 +482,32 @@
     @media (max-width: 700px) {
       .contacto-wrap { grid-template-columns: 1fr; }
     }
-    .contact-info p { font-size: 0.95rem; color: var(--text); margin-bottom: 24px; }
+    .contact-info p { font-size: 0.95rem; color: var(--ink-soft); margin-bottom: 24px; }
     .contact-info .dato {
       display: flex; gap: 12px; align-items: flex-start;
       margin-bottom: 16px;
     }
     .contact-info .dato-label {
       font-size: 0.65rem; letter-spacing: 0.2em;
-      color: var(--muted); text-transform: uppercase;
+      color: var(--ink-faint); text-transform: uppercase;
       min-width: 80px; padding-top: 2px;
     }
-    .contact-info .dato-val { color: var(--cream); font-size: 0.9rem; }
+    .contact-info .dato-val { color: var(--ink); font-size: 0.9rem; }
 
     /* Formulario */
     .form-group { margin-bottom: 20px; }
     .form-group label {
       display: block; font-size: 0.65rem;
-      letter-spacing: 0.2em; color: var(--muted);
+      letter-spacing: 0.2em; color: var(--ink-faint);
       text-transform: uppercase; margin-bottom: 8px;
     }
     .form-group input,
     .form-group textarea,
     .form-group select {
       width: 100%;
-      background: rgba(22,13,8,0.8);
-      border: 1px solid rgba(139,26,26,0.3);
-      color: var(--cream);
+      background: var(--paper2);
+      border: 1px solid var(--line);
+      color: var(--ink);
       padding: 12px 16px;
       font-size: 0.9rem;
       font-family: 'Inter', sans-serif;
@@ -513,7 +521,7 @@
       border-color: var(--cochinilla-light);
     }
     .form-group textarea { resize: vertical; min-height: 100px; }
-    .form-group select option { background: #1a0a06; }
+    .form-group select option { background: #efe0c4; color: var(--ink); }
     .btn-send {
       width: 100%;
       background: var(--cochinilla);
@@ -529,15 +537,15 @@
     #form-ok {
       display: none; margin-top: 16px;
       padding: 16px; text-align: center;
-      background: rgba(139,26,26,0.15);
-      border: 1px solid rgba(139,26,26,0.3);
-      color: var(--cream); font-size: 0.9rem;
+      background: rgba(139,26,26,0.10);
+      border: 1px solid var(--line);
+      color: var(--ink); font-size: 0.9rem;
     }
 
-    /* ── FOOTER ── */
+    /* ── FOOTER — banda nocturna de cierre ── */
     footer {
-      background: #080503;
-      border-top: 1px solid rgba(139,26,26,0.15);
+      background: var(--night);
+      border-top: 1px solid rgba(178,58,46,0.25);
       padding: 48px 24px;
       text-align: center;
     }
@@ -549,7 +557,7 @@
     .footer-logo span { color: var(--cochinilla-light); }
     .footer-place {
       font-size: 0.75rem; letter-spacing: 0.2em;
-      color: var(--muted); text-transform: uppercase;
+      color: var(--muted-dark); text-transform: uppercase;
       margin-bottom: 24px;
     }
     /* SKILL: footer usa <ul> simple, nunca <nav> que pueda conflictuar */
@@ -560,16 +568,16 @@
     }
     .footer-links a {
       font-size: 0.75rem; letter-spacing: 0.1em;
-      color: var(--muted); text-decoration: none;
+      color: var(--muted-dark); text-decoration: none;
       transition: color 0.2s;
     }
     .footer-links a:hover { color: var(--cream); }
     .footer-copy {
-      font-size: 0.7rem; color: var(--muted);
+      font-size: 0.7rem; color: var(--muted-dark);
       letter-spacing: 0.05em;
     }
     .footer-legal {
-      font-size: 0.65rem; color: rgba(122,106,90,0.5);
+      font-size: 0.65rem; color: rgba(184,166,142,0.6);
       margin-top: 8px;
     }
 
@@ -600,19 +608,6 @@
     .reveal:nth-child(5) { transition-delay: 0.4s; }
     .reveal:nth-child(6) { transition-delay: 0.5s; }
 
-    /* Texto animado con shimmer en hero-title em */
-    .hero-title em {
-      background: linear-gradient(90deg, var(--cochinilla-light), #e8a040, var(--cochinilla-light));
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: shimmer 3s linear infinite;
-    }
-    @keyframes shimmer {
-      from { background-position: 200% center; }
-      to   { background-position: 0% center; }
-    }
     /* Línea decorativa animada bajo sec-label */
     .sec-label::after {
       content: '';
@@ -633,28 +628,19 @@
     }
     .tinte-card:hover .tinte-swatch {
       transform: scale(1.15);
-      box-shadow: 0 0 20px rgba(139,26,26,0.4);
+      box-shadow: 0 6px 22px rgba(139,26,26,0.3);
     }
     /* Card hover lift */
     .tinte-card {
       transition: background 0.3s ease;
-      border-radius: 2px;
     }
-    .tinte-card:hover { background: rgba(22,13,8,0.6); }
+    .tinte-card:hover { background: var(--paper2); }
     .simbolo-card {
       transition: border-color 0.3s ease, transform 0.3s ease;
     }
     .simbolo-card:hover {
-      border-color: rgba(139,26,26,0.5);
+      border-color: rgba(139,26,26,0.4);
       transform: translateY(-4px);
-    }
-
-    .hero::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: url('img/tapete-telar.jpg') center/cover no-repeat;
-      opacity: 0.08;
-      z-index: -1;
     }
 
 
@@ -712,13 +698,13 @@
       gap: 24px; margin-top: 0;
     }
     .prod-card {
-      background: rgba(22,13,8,0.7);
-      border: 1px solid rgba(139,26,26,0.2);
+      background: var(--paper2);
+      border: 1px solid var(--line);
       border-radius: 2px; overflow: hidden;
       transition: border-color 0.3s, transform 0.3s;
     }
     .prod-card:hover {
-      border-color: rgba(139,26,26,0.5);
+      border-color: rgba(139,26,26,0.4);
       transform: translateY(-4px);
     }
     .prod-img { width: 100%; height: 220px; object-fit: cover; display: block; }
@@ -730,23 +716,23 @@
     }
     .prod-name {
       font-family: 'Playfair Display', serif;
-      font-size: 1.1rem; color: var(--cream);
+      font-size: 1.1rem; color: var(--ink);
       margin-bottom: 8px;
     }
-    .prod-desc { font-size: 0.85rem; color: var(--text); line-height: 1.6; margin-bottom: 16px; }
+    .prod-desc { font-size: 0.85rem; color: var(--ink-soft); line-height: 1.6; margin-bottom: 16px; }
     .prod-footer {
       display: flex; align-items: center;
       justify-content: space-between;
     }
     .prod-precio {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem; color: var(--muted);
+      font-size: 1rem; color: var(--ink-faint);
       font-style: italic;
     }
     .btn-consultar {
       background: none;
       border: 1px solid var(--cochinilla);
-      color: var(--cochinilla-light);
+      color: var(--cochinilla);
       padding: 8px 16px; font-size: 0.7rem;
       letter-spacing: 0.12em; text-transform: uppercase;
       cursor: pointer; border-radius: 2px;
@@ -755,29 +741,29 @@
     .btn-consultar:hover {
       background: var(--cochinilla); color: var(--cream);
     }
-    /* Modal cotización */
+    /* Modal cotización — superficie nocturna de foco */
     .modal-overlay {
       display: none; position: fixed; inset: 0;
-      background: rgba(8,4,2,0.92); z-index: 2000;
+      background: rgba(28,19,12,0.82); z-index: 2000;
       align-items: center; justify-content: center;
       padding: 24px;
     }
     .modal-overlay.open { display: flex !important; }
     .modal-box {
-      background: #160d08; border: 1px solid rgba(139,26,26,0.3);
+      background: var(--night2); border: 1px solid rgba(178,58,46,0.3);
       border-radius: 2px; padding: 40px; max-width: 480px; width: 100%;
       position: relative;
     }
     .modal-close {
       position: absolute; top: 16px; right: 16px;
-      background: none; border: none; color: var(--muted);
+      background: none; border: none; color: var(--muted-dark);
       font-size: 1.5rem; cursor: pointer;
     }
     .modal-title {
       font-family: 'Playfair Display', serif;
       font-size: 1.3rem; color: var(--cream); margin-bottom: 8px;
     }
-    .modal-sub { font-size: 0.85rem; color: var(--muted); margin-bottom: 24px; }
+    .modal-sub { font-size: 0.85rem; color: var(--muted-dark); margin-bottom: 24px; }
 
     /* ── ANIMACIONES HERO ── */
     @keyframes fadeUp {
@@ -794,12 +780,47 @@
       .comp-cell.industrial { display: none; }
       .tabla-comparativa { background: none; border: none; }
       .comp-cell.autentico {
-        border: 1px solid rgba(139,26,26,0.2);
+        border: 1px solid var(--line);
         margin-bottom: 2px;
       }
       .col-header.autentico { border: 1px solid rgba(139,26,26,0.3); }
       .paso { grid-template-columns: 40px 1fr; }
     }
+
+    /* ── EFECTO BORDADO — la página como si el tapete la hubiera tejido ── */
+    .frayed {
+      width: 100%; height: 16px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='16' viewBox='0 0 40 16'%3E%3Cg stroke='%238d7c68' stroke-width='1' fill='none' stroke-linecap='round'%3E%3Cpath d='M2 0v9'/%3E%3Cpath d='M6 0v13'/%3E%3Cpath d='M10 0v6'/%3E%3Cpath d='M14 0v11'/%3E%3Cpath d='M18 0v8'/%3E%3Cpath d='M22 0v14'/%3E%3Cpath d='M26 0v7'/%3E%3Cpath d='M30 0v12'/%3E%3Cpath d='M34 0v9'/%3E%3Cpath d='M38 0v6'/%3E%3C/g%3E%3C/svg%3E");
+      background-repeat: repeat-x;
+      background-position: top center;
+      opacity: 0.55;
+    }
+    .frayed.on-dark {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='16' viewBox='0 0 40 16'%3E%3Cg stroke='%23b8a68e' stroke-width='1' fill='none' stroke-linecap='round'%3E%3Cpath d='M2 0v9'/%3E%3Cpath d='M6 0v13'/%3E%3Cpath d='M10 0v6'/%3E%3Cpath d='M14 0v11'/%3E%3Cpath d='M18 0v8'/%3E%3Cpath d='M22 0v14'/%3E%3Cpath d='M26 0v7'/%3E%3Cpath d='M30 0v12'/%3E%3Cpath d='M34 0v9'/%3E%3Cpath d='M38 0v6'/%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.4;
+    }
+
+    /* Marco tipo puntada alrededor de la foto principal y las tarjetas de producto */
+    .hero-photo {
+      outline: 1.5px dashed rgba(179,130,46,0.55);
+      outline-offset: 7px;
+    }
+    .prod-card {
+      outline: 1.5px dashed rgba(179,130,46,0.4);
+      outline-offset: 5px;
+    }
+    @media (max-width: 860px) {
+      .hero-photo { outline-offset: 5px; }
+    }
+
+    /* Pequeño motivo bordado — hilo con dos hojas, acento discreto */
+    .flourish {
+      display: block;
+      width: 46px; height: 20px;
+      margin: 0 0 18px;
+      opacity: 0.75;
+    }
+    .flourish.center { margin: 0 auto 18px; }
   </style>
 </head>
 <body>
@@ -807,8 +828,15 @@
 <!-- ═══════════════════════════════════════
      NAV
 ═══════════════════════════════════════ -->
-<nav>
+<nav id="mainNav">
   <a href="#top" class="logo">TEOTITLÁN <span>◈</span> DEL VALLE</a>
+  <ul class="nav-menu">
+    <li><a onclick="navTo('familia')"><span class="es">La Familia</span><span class="en">The Family</span></a></li>
+    <li><a onclick="navTo('historia')"><span class="es">Historia</span><span class="en">History</span></a></li>
+    <li><a onclick="navTo('proceso')"><span class="es">El Taller</span><span class="en">The Workshop</span></a></li>
+    <li><a onclick="navTo('tienda')"><span class="es">Tienda</span><span class="en">Shop</span></a></li>
+    <li><a onclick="navTo('contacto')"><span class="es">Contacto</span><span class="en">Contact</span></a></li>
+  </ul>
   <div class="nav-right">
     <div class="lang-btns">
       <button class="lb on" onclick="setL('es')">ES</button>
@@ -824,11 +852,7 @@
 <div id="navLinks" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(6,3,1,0.97);z-index:9999;flex-direction:column;align-items:center;justify-content:center;gap:34px;">
   <a onclick="navTo('familia')" style="color:#f2e8d9;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1.9rem;letter-spacing:0.05em;cursor:pointer;"><span class="es">La Familia</span><span class="en">The Family</span></a>
   <a onclick="navTo('historia')" style="color:#f2e8d9;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1.9rem;letter-spacing:0.05em;cursor:pointer;"><span class="es">Historia</span><span class="en">History</span></a>
-  <a onclick="navTo('tintes')" style="color:#f2e8d9;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1.9rem;letter-spacing:0.05em;cursor:pointer;"><span class="es">Tintes</span><span class="en">Dyes</span></a>
-  <a onclick="navTo('proceso')" style="color:#f2e8d9;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1.9rem;letter-spacing:0.05em;cursor:pointer;"><span class="es">Proceso</span><span class="en">Process</span></a>
-  <a onclick="navTo('juzgar')" style="color:#f2e8d9;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1.9rem;letter-spacing:0.05em;cursor:pointer;"><span class="es">Cómo Juzgar</span><span class="en">How to Judge</span></a>
-  <a onclick="navTo('simbolos')" style="color:#f2e8d9;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1.9rem;letter-spacing:0.05em;cursor:pointer;"><span class="es">Símbolos</span><span class="en">Symbols</span></a>
-  <a onclick="navTo('galeria')" style="color:#f2e8d9;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1.9rem;letter-spacing:0.05em;cursor:pointer;"><span class="es">Galería</span><span class="en">Gallery</span></a>
+  <a onclick="navTo('proceso')" style="color:#f2e8d9;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1.9rem;letter-spacing:0.05em;cursor:pointer;"><span class="es">El Taller</span><span class="en">The Workshop</span></a>
   <a onclick="navTo('tienda')" style="color:#f2e8d9;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1.9rem;letter-spacing:0.05em;cursor:pointer;"><span class="es">Tienda</span><span class="en">Shop</span></a>
   <a onclick="navTo('contacto')" style="color:#f2e8d9;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1.9rem;letter-spacing:0.05em;cursor:pointer;"><span class="es">Contacto</span><span class="en">Contact</span></a>
 </div>
@@ -837,8 +861,16 @@
      HERO
 ═══════════════════════════════════════ -->
 <section class="hero" id="top">
+  <div class="frayed" style="position:absolute; top:var(--nav-h); left:0; z-index:1;" aria-hidden="true"></div>
   <div class="hero-inner">
     <div class="hero-text">
+      <svg class="flourish" viewBox="0 0 46 20" fill="none" aria-hidden="true">
+        <path d="M2 15 Q 14 4 23 10 T 43 5" stroke="#b23a2e" stroke-width="1.3" stroke-linecap="round"/>
+        <ellipse cx="14" cy="7" rx="4" ry="2" transform="rotate(-30 14 7)" fill="#6b7a3f"/>
+        <ellipse cx="30" cy="8" rx="4" ry="2" transform="rotate(20 30 8)" fill="#6b7a3f"/>
+        <circle cx="43" cy="5" r="2.2" fill="#b3822e"/>
+        <circle cx="39" cy="3" r="1.4" fill="#b23a2e"/>
+      </svg>
       <p class="hero-tag es">Teotitlán del Valle · Sierra Juárez · Oaxaca · 2,500 años de tradición</p>
       <p class="hero-tag en">Teotitlán del Valle · Sierra Juárez · Oaxaca · 2,500 years of tradition</p>
 
@@ -889,6 +921,13 @@
      FAMILIA
 ═══════════════════════════════════════ -->
 <section id="familia">
+  <svg class="flourish" viewBox="0 0 46 20" fill="none" aria-hidden="true">
+    <path d="M2 15 Q 14 4 23 10 T 43 5" stroke="#b23a2e" stroke-width="1.3" stroke-linecap="round"/>
+    <ellipse cx="14" cy="7" rx="4" ry="2" transform="rotate(-30 14 7)" fill="#6b7a3f"/>
+    <ellipse cx="30" cy="8" rx="4" ry="2" transform="rotate(20 30 8)" fill="#6b7a3f"/>
+    <circle cx="43" cy="5" r="2.2" fill="#b3822e"/>
+    <circle cx="39" cy="3" r="1.4" fill="#b23a2e"/>
+  </svg>
   <p class="sec-label es">00 — La Familia</p>
   <p class="sec-label en">00 — The Family</p>
 
@@ -897,7 +936,7 @@
 
   <div style="display:flex; gap:48px; flex-wrap:wrap; align-items:center; margin-top:8px;">
     <div style="flex:1 1 380px; min-width:280px;">
-      <img src="img/familia.jpg" alt="Familia de tejedores de Teotitlán del Valle" loading="lazy" style="width:100%; height:auto; border-radius:4px; display:block; box-shadow:0 20px 50px rgba(0,0,0,0.45);">
+      <img src="img/telar-artesano.jpg" alt="Manos de un tejedor de esta familia trabajando en el telar" loading="lazy" style="width:100%; height:auto; border-radius:4px; display:block; box-shadow:0 20px 50px rgba(0,0,0,0.45);">
     </div>
     <div style="flex:1 1 380px; min-width:280px;">
       <p class="sec-body es">Escaneaste el QR de un tapete tejido por esta familia en Teotitlán del Valle, Oaxaca. No es una fábrica ni una tienda genérica — es el trabajo de manos que conoces por su nombre, que puedes volver a contactar cuando quieras.</p>
@@ -966,6 +1005,12 @@
   </div>
 </section>
 
+<blockquote>
+  <span class="es">Cada nudo que hago lo aprendí de mi familia — y algún día, alguien más lo aprenderá de mí.</span>
+  <span class="en">Every knot I make, I learned from my family — and one day, someone else will learn it from me.</span>
+  <cite><span class="es">Tejedor de Teotitlán del Valle</span><span class="en">Weaver of Teotitlán del Valle</span></cite>
+</blockquote>
+
 <div class="sep"></div>
 
 <!-- ═══════════════════════════════════════
@@ -983,7 +1028,7 @@
 
   <div class="tintes-grid">
     <div class="tinte-card reveal">
-      <img src="img/grana-cochinilla.jpg" alt="Grana cochinilla recolectada a mano en nopal" loading="lazy" style="width:100%; height:140px; object-fit:cover; border-radius:6px; margin-bottom:14px;">
+      <div class="tinte-swatch" style="background: radial-gradient(circle, #b23a2e, #6e130f);"></div>
       <h3 class="es">Rojo · Carmesí · Púrpura</h3>
       <h3 class="en">Red · Crimson · Purple</h3>
       <p class="tinte-source es">Grana Cochinilla (Dactylopius coccus)</p>
@@ -1282,6 +1327,12 @@
   </div>
 </section>
 
+<blockquote>
+  <span class="es">No tejemos diseños. Tejemos lo que nos enseñaron a ver en el mundo.</span>
+  <span class="en">We don't weave designs. We weave what we were taught to see in the world.</span>
+  <cite><span class="es">Familia tejedora de Teotitlán del Valle</span><span class="en">Weaving family of Teotitlán del Valle</span></cite>
+</blockquote>
+
 <div class="sep"></div>
 
 <!-- ═══════════════════════════════════════
@@ -1299,14 +1350,14 @@
 
   <div class="galeria-grid">
     <div class="g-item reveal">
-      <img src="img/telar-artesano.jpg" alt="Maestro tejedor en telar de pedal" loading="lazy">
-      <div class="g-caption es">El telar de pedal</div>
-      <div class="g-caption en">The pedal loom</div>
+      <img src="img/tapete-greca-azul.jpg" alt="Tapete con greca zapoteca en tonos azules" loading="lazy">
+      <div class="g-caption es">Greca en azul índigo</div>
+      <div class="g-caption en">Indigo step-fret</div>
     </div>
     <div class="g-item reveal">
-      <img src="img/grana-cochinilla.jpg" alt="Grana cochinilla recolectada a mano" loading="lazy">
-      <div class="g-caption es">El origen del rojo</div>
-      <div class="g-caption en">Where red comes from</div>
+      <img src="img/tapete-base-tarjeta.jpg" alt="Detalle de tapete con greca y diamante central" loading="lazy">
+      <div class="g-caption es">Detalle de greca</div>
+      <div class="g-caption en">Step-fret detail</div>
     </div>
     <div class="g-item reveal">
       <img src="img/carretes-hilo.jpg" alt="Carretes de hilo teñido" loading="lazy">
@@ -1384,7 +1435,7 @@
     </div>
 
     <div class="prod-card reveal">
-      <img class="prod-img" src="img/telar-artesano.jpg" alt="Artesano tejiendo un encargo personalizado" loading="lazy">
+      <img class="prod-img" src="img/tapete-telar.jpg" alt="Tapete en proceso sobre el telar al aire libre" loading="lazy">
       <div class="prod-body">
         <p class="prod-tag es">Encargo Especial · Diseño a la medida</p>
         <p class="prod-tag en">Special Commission · Custom Design</p>
@@ -1439,6 +1490,13 @@
      CONTACTO
 ═══════════════════════════════════════ -->
 <section id="contacto">
+  <svg class="flourish" viewBox="0 0 46 20" fill="none" aria-hidden="true">
+    <path d="M2 15 Q 14 4 23 10 T 43 5" stroke="#b23a2e" stroke-width="1.3" stroke-linecap="round"/>
+    <ellipse cx="14" cy="7" rx="4" ry="2" transform="rotate(-30 14 7)" fill="#6b7a3f"/>
+    <ellipse cx="30" cy="8" rx="4" ry="2" transform="rotate(20 30 8)" fill="#6b7a3f"/>
+    <circle cx="43" cy="5" r="2.2" fill="#b3822e"/>
+    <circle cx="39" cy="3" r="1.4" fill="#b23a2e"/>
+  </svg>
   <p class="sec-label es">06 — Contacto</p>
   <p class="sec-label en">06 — Contact</p>
 
@@ -1464,8 +1522,8 @@
         <span class="dato-val"><a href="mailto:tapetes@ejemplo.com" style="color:var(--cochinilla-light);text-decoration:none;">tapetes@ejemplo.com</a></span>
       </div>
 
-      <p style="margin-top:24px; font-size:0.85rem; color:var(--muted);" class="es">⏱ Tiempo de elaboración: 15 días a 3 meses según tamaño y complejidad.</p>
-      <p style="margin-top:24px; font-size:0.85rem; color:var(--muted);" class="en">⏱ Production time: 15 days to 3 months depending on size and complexity.</p>
+      <p style="margin-top:24px; font-size:0.85rem; color:var(--ink-faint);" class="es">⏱ Tiempo de elaboración: 15 días a 3 meses según tamaño y complejidad.</p>
+      <p style="margin-top:24px; font-size:0.85rem; color:var(--ink-faint);" class="en">⏱ Production time: 15 days to 3 months depending on size and complexity.</p>
     </div>
 
     <div class="contact-form">
@@ -1517,7 +1575,8 @@
 <!-- ═══════════════════════════════════════
      FOOTER — SKILL: <ul> no <nav> para evitar conflictos
 ═══════════════════════════════════════ -->
-<footer>
+<footer style="position:relative;">
+  <div class="frayed on-dark" style="position:absolute; top:0; left:0;" aria-hidden="true"></div>
   <div class="footer-logo">TEOTITLÁN <span>◈</span> DEL VALLE</div>
   <p class="footer-place">Tapetes Artesanales · Oaxaca, México</p>
 
@@ -1537,16 +1596,16 @@
 
 
   <div style="display:flex;gap:28px;justify-content:center;margin-bottom:32px;">
-    <a href="#" aria-label="Facebook" style="color:var(--muted);text-decoration:none;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;transition:color 0.2s;" onmouseover="this.style.color='#f2e8d9'" onmouseout="this.style.color='var(--muted)'">
+    <a href="#" aria-label="Facebook" style="color:var(--muted-dark);text-decoration:none;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;transition:color 0.2s;" onmouseover="this.style.color='#f2e8d9'" onmouseout="this.style.color='var(--muted-dark)'">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
     </a>
-    <a href="#" aria-label="Instagram" style="color:var(--muted);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#f2e8d9'" onmouseout="this.style.color='var(--muted)'">
+    <a href="#" aria-label="Instagram" style="color:var(--muted-dark);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#f2e8d9'" onmouseout="this.style.color='var(--muted-dark)'">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
     </a>
-    <a href="#" aria-label="TikTok" style="color:var(--muted);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#f2e8d9'" onmouseout="this.style.color='var(--muted)'">
+    <a href="#" aria-label="TikTok" style="color:var(--muted-dark);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#f2e8d9'" onmouseout="this.style.color='var(--muted-dark)'">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V9.05a8.16 8.16 0 0 0 4.77 1.52V7.12a4.85 4.85 0 0 1-1-.43z"/></svg>
     </a>
-    <a href="#" aria-label="Twitter / X" style="color:var(--muted);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#f2e8d9'" onmouseout="this.style.color='var(--muted)'">
+    <a href="#" aria-label="Twitter / X" style="color:var(--muted-dark);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#f2e8d9'" onmouseout="this.style.color='var(--muted-dark)'">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
     </a>
   </div>
@@ -1599,6 +1658,23 @@
   window.addEventListener('touchmove', function() {
     if (navOpen) closeNav();
   }, { passive: true });
+
+  // Nav se oculta al deslizar hacia abajo, reaparece al subir o cerca del top
+  (function() {
+    var mainNav = document.getElementById('mainNav');
+    var lastY = window.scrollY;
+    window.addEventListener('scroll', function() {
+      var y = window.scrollY;
+      if (y < 80) {
+        mainNav.classList.remove('nav-hide');
+      } else if (y > lastY + 4) {
+        mainNav.classList.add('nav-hide');
+      } else if (y < lastY - 4) {
+        mainNav.classList.remove('nav-hide');
+      }
+      lastY = y;
+    }, { passive: true });
+  })();
 
   function navTo(id) {
     navOpen = false;
