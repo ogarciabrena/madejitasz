@@ -220,9 +220,15 @@
       opacity: 0;
       animation: fadeUp 1s 0.4s forwards;
     }
-    .hero-title em {
+    .hero-title em,
+    .sec-title em {
       font-style: italic;
       color: var(--cochinilla-light);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='12'%3E%3Cline x1='2' y1='10' x2='11' y2='2' stroke='%23b3822e' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: repeat-x;
+      background-position: left bottom 4px;
+      background-size: 16px 12px;
+      padding-bottom: 12px;
     }
     .hero-sub {
       font-family: 'Cormorant Garamond', serif;
@@ -262,8 +268,19 @@
     }
     .btn-outline:hover { border-color: var(--ink); background: rgba(36,26,16,0.05); }
 
+    .hero-floor {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      height: 68px;
+      background: url('img/tapete-greca-azul.jpg') center 30%/cover no-repeat;
+    }
+    .hero-floor::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(rgba(8,4,2,0.1), rgba(8,4,2,0.32));
+      box-shadow: 0 2px 10px rgba(8,4,2,0.35) inset;
+    }
     .scroll-ticker {
-      position: absolute; bottom: 0; left: 0; right: 0;
+      position: absolute; bottom: 68px; left: 0; right: 0;
       overflow: hidden; padding: 12px 0;
       border-top: 1px solid var(--line);
       background: rgba(238,224,196,0.7);
@@ -278,12 +295,8 @@
       color: var(--ink-soft); text-transform: uppercase;
     }
     .ticker-inner span strong {
-      color: #c5453a;
-      font-weight: 700;
-      text-shadow:
-        0 1px 0 #7a140f,
-        0 2px 0 #6b110c,
-        0 2.5px 2px rgba(36,26,16,0.35);
+      color: var(--cochinilla-light);
+      font-weight: 600;
     }
     @keyframes ticker {
       from { transform: translateX(0); }
@@ -304,7 +317,6 @@
       line-height: 1.1;
       margin-bottom: 24px;
     }
-    .sec-title em { font-style: italic; color: var(--cochinilla-light); }
     .sec-body {
       font-size: 1rem; color: var(--ink-soft);
       max-width: 680px; line-height: 1.8;
@@ -875,12 +887,12 @@
       <h1 class="hero-title es">El hilo que<br><em>no miente</em></h1>
       <h1 class="hero-title en">The thread that<br><em>never lies</em></h1>
 
-      <p class="hero-sub es">Escaneaste el tapete de una familia de tejedores en Teotitlán del Valle. Esto no es decoración — es memoria viva, hecha a mano.</p>
-      <p class="hero-sub en">You scanned the rug of a weaving family in Teotitlán del Valle. This isn't decoration — it's living memory, made by hand.</p>
+      <p class="hero-sub es">Escaneaste mi tapete. Soy Hilario, tejedor de Teotitlán del Valle — esto no es decoración, es memoria viva que tejí con mis manos.</p>
+      <p class="hero-sub en">You scanned my rug. I'm Hilario, a weaver from Teotitlán del Valle — this isn't decoration, it's living memory I wove with my own hands.</p>
 
       <div class="hero-ctas">
-        <a href="#familia" class="btn-primary es">Conocer a la familia</a>
-        <a href="#familia" class="btn-primary en">Meet the family</a>
+        <a href="#familia" class="btn-primary es">Conóceme</a>
+        <a href="#familia" class="btn-primary en">Meet me</a>
         <a href="#contacto" class="btn-outline es">Conseguir un tapete</a>
         <a href="#contacto" class="btn-outline en">Get a rug</a>
       </div>
@@ -911,6 +923,7 @@
       <span><strong>Musgo de Roca</strong> · Ocre</span>
     </div>
   </div>
+  <div class="hero-floor" aria-hidden="true"></div>
 </section>
 
 <div class="sep"></div>
@@ -937,12 +950,12 @@
       <img class="stitched" src="img/telar-artesano.jpg" alt="Tejiendo en el telar de pedal, taller 14 Hilos de Lana" loading="lazy" style="width:100%; height:auto; display:block; box-shadow:0 20px 50px rgba(0,0,0,0.45);">
     </div>
     <div style="flex:1 1 380px; min-width:280px;">
-      <p class="sec-body es">Escaneaste el tapete de <strong>14 Hilos de Lana</strong> — el taller de Hilario, tejedor de Teotitlán del Valle. El nombre no es casual: <em>14</em> por el día que nació, <em>Hilos</em> por su nombre, <em>Lana</em> por el material con el que trabaja.</p>
-      <p class="sec-body en">You scanned a rug from <strong>14 Hilos de Lana</strong> — Hilario's workshop in Teotitlán del Valle. The name isn't random: <em>14</em> for the day he was born, <em>Hilos</em> (threads) for his name, <em>Lana</em> (wool) for the material he works with.</p>
-      <p class="sec-body es">Es la cuarta generación: de su bisabuelo a su abuelo José, de José a su padre Miguel, y de Miguel a Hilario. Sigue los diseños raíz de sus ancestros, pero también arriesga — tejiendo no solo lana, sino algodón, seda, piel, gamuza e ixtle, materiales que pocos se atreven a dominar.</p>
-      <p class="sec-body en">He's the fourth generation: from his great-grandfather to his grandfather José, from José to his father Miguel, and from Miguel to Hilario. He follows his ancestors' root designs, but he also takes risks — weaving not just wool, but cotton, silk, leather, suede, and ixtle, materials few dare to master.</p>
-      <a href="#contacto" class="btn-primary es" style="display:inline-block; margin-top:8px;">Contactar a Hilario</a>
-      <a href="#contacto" class="btn-primary en" style="display:inline-block; margin-top:8px;">Contact Hilario</a>
+      <p class="sec-body es">Escaneaste mi tapete — soy <strong>14 Hilos de Lana</strong>, mi taller aquí en Teotitlán del Valle. El nombre no es casual: <em>14</em> por el día en que nací, <em>Hilos</em> por mi nombre, <em>Lana</em> por el material con el que trabajo.</p>
+      <p class="sec-body en">You scanned my rug — I'm <strong>14 Hilos de Lana</strong>, my workshop here in Teotitlán del Valle. The name isn't random: <em>14</em> for the day I was born, <em>Hilos</em> (threads) for my name, <em>Lana</em> (wool) for the material I work with.</p>
+      <p class="sec-body es">Soy la cuarta generación: de mi bisabuelo a mi abuelo José, de José a mi padre Miguel, y de Miguel a mí. Sigo los diseños raíz de mis ancestros, pero también arriesgo — tejo no solo lana, sino algodón, seda, piel, gamuza e ixtle, materiales que pocos se atreven a dominar.</p>
+      <p class="sec-body en">I'm the fourth generation: from my great-grandfather to my grandfather José, from José to my father Miguel, and from Miguel to me. I follow my ancestors' root designs, but I also take risks — weaving not just wool, but cotton, silk, leather, suede, and ixtle, materials few dare to master.</p>
+      <a href="#contacto" class="btn-primary es" style="display:inline-block; margin-top:8px;">Contáctame</a>
+      <a href="#contacto" class="btn-primary en" style="display:inline-block; margin-top:8px;">Contact me</a>
     </div>
   </div>
 </section>
@@ -960,8 +973,8 @@
   <h2 class="sec-title es">De la oveja<br>al <em>tapete</em></h2>
   <h2 class="sec-title en">From the sheep<br>to the <em>rug</em></h2>
 
-  <p class="sec-body es">Para Hilario, el tiempo no depende del tamaño — depende de qué tan complicado sea el diseño. Una pieza pequeña puede tardar de 6 a 9 meses, igual que una de 3 por 5 metros.</p>
-  <p class="sec-body en">For Hilario, time doesn't depend on size — it depends on how complicated the design is. A small piece can take 6 to 9 months, same as a 3-by-5-meter one.</p>
+  <p class="sec-body es">Para mí, el tiempo no depende del tamaño — depende de qué tan complicado sea el diseño. Una pieza pequeña puede tardarme de 6 a 9 meses, igual que una de 3 por 5 metros.</p>
+  <p class="sec-body en">For me, time doesn't depend on size — it depends on how complicated the design is. A small piece can take me 6 to 9 months, same as a 3-by-5-meter one.</p>
 
   <div style="display:flex; gap:16px; flex-wrap:wrap; margin:32px 0 48px;">
     <img class="stitched" src="img/telar-artesano.jpg" alt="Hilario tejiendo en el telar de pedal" loading="lazy" style="flex:1 1 300px; min-width:260px; height:280px; object-fit:cover;">
@@ -974,8 +987,8 @@
       <div>
         <h3 class="es">Trasquila y lavado de lana</h3>
         <h3 class="en">Shearing and wool washing</h3>
-        <p class="es">Sus ovejas se crían en la sierra, donde el clima favorece su desarrollo y da una fibra más abundante. La lana se lava con jabones naturales para eliminar la grasa y las impurezas del vellón.</p>
-        <p class="en">His sheep are raised in the highlands, where the climate favors their development and yields more abundant fiber. Wool is washed with natural soaps to remove lanolin and fleece impurities.</p>
+        <p class="es">Mis ovejas se crían en la sierra, donde el clima favorece su desarrollo y da una fibra más abundante. Lavo la lana con jabones naturales para eliminar la grasa y las impurezas del vellón.</p>
+        <p class="en">My sheep are raised in the highlands, where the climate favors their development and yields more abundant fiber. I wash the wool with natural soaps to remove lanolin and fleece impurities.</p>
       </div>
     </div>
     <div class="paso reveal">
@@ -983,8 +996,8 @@
       <div>
         <h3 class="es">Cardado</h3>
         <h3 class="en">Carding</h3>
-        <p class="es">La lana se peina con dos cepillos grandes de madera con clavos de metal — las "cardas". Aquí nace la inspiración: ninguna oveja da el mismo tono, así que al ver cómo sale la lana, Hilario ya va decidiendo qué colores teñir — y de ahí surge el diseño del siguiente tapete.</p>
-        <p class="en">Wool is combed with two large wooden brushes with metal teeth — the "carders." This is where inspiration begins: no two sheep give the same tone, so as the wool comes out, Hilario is already deciding which colors to dye — and from there, the next rug's design takes shape.</p>
+        <p class="es">Peino la lana con dos cepillos grandes de madera con clavos de metal — las "cardas". Aquí nace mi inspiración: ninguna oveja da el mismo tono, así que al ver cómo sale la lana ya voy decidiendo qué colores teñir — y de ahí surge el diseño de mi siguiente tapete.</p>
+        <p class="en">I comb the wool with two large wooden brushes with metal teeth — the "carders." This is where my inspiration begins: no two sheep give the same tone, so as the wool comes out I'm already deciding which colors to dye — and from there, the design of my next rug takes shape.</p>
       </div>
     </div>
     <div class="paso reveal">
@@ -1001,8 +1014,8 @@
       <div>
         <h3 class="es">Teñido</h3>
         <h3 class="en">Dyeing</h3>
-        <p class="es">Las madejas de hilo se sumergen en agua hirviendo con el tinte natural y el mordente (alumbre, jugo de limón o sal según el tinte). El tiempo de cocción, la temperatura y la proporción determinan la intensidad del color. Se puede tardar de un día a una semana solo en esta etapa.</p>
-        <p class="en">Yarn skeins are submerged in boiling water with natural dye and mordant (alum, lemon juice, or salt depending on the dye). Cooking time, temperature, and proportion determine color intensity. This stage alone can take from one day to a week.</p>
+        <p class="es">Sumerjo las madejas de hilo en agua hirviendo con el tinte natural y el mordente (alumbre, jugo de limón o sal según el tinte). El tiempo de cocción, la temperatura y la proporción determinan la intensidad del color. Puedo tardarme de un día a una semana solo en esta etapa.</p>
+        <p class="en">I submerge the yarn skeins in boiling water with natural dye and mordant (alum, lemon juice, or salt depending on the dye). Cooking time, temperature, and proportion determine color intensity. This stage alone can take me from one day to a week.</p>
       </div>
     </div>
     <div class="paso reveal">
@@ -1010,8 +1023,8 @@
       <div>
         <h3 class="es">Montaje del telar y urdimbre</h3>
         <h3 class="en">Loom setup and warping</h3>
-        <p class="es">El artesano dispone los hilos de urdimbre (los hilos verticales fijos) en el telar de pedal. Este paso define el ancho y la longitud final del tapete. La urdimbre suele ser de algodón — más resistente — mientras que la trama que crea el diseño es de lana teñida.</p>
-        <p class="en">The artisan sets up the warp threads (fixed vertical threads) on the pedal loom. This step defines the final width and length of the rug. The warp is usually cotton — more durable — while the weft that creates the design is dyed wool.</p>
+        <p class="es">Dispongo los hilos de urdimbre (los hilos verticales fijos) en el telar de pedal. Este paso define el ancho y la longitud final del tapete. Uso algodón para la urdimbre — más resistente — mientras que la trama que crea el diseño es de lana teñida.</p>
+        <p class="en">I set up the warp threads (fixed vertical threads) on the pedal loom. This step defines the final width and length of the rug. I use cotton for the warp — more durable — while the weft that creates the design is dyed wool.</p>
       </div>
     </div>
     <div class="paso reveal">
@@ -1019,8 +1032,8 @@
       <div>
         <h3 class="es">Tejido</h3>
         <h3 class="en">Weaving</h3>
-        <p class="es">El artesano acciona los pedales con los pies para levantar alternadamente los hilos de urdimbre, mientras pasa la lanzadera con el hilo de trama de mano en mano. Requiere coordinación total entre pies, manos y mente — el diseño complejo vive solo en la memoria del artesano, no en un patrón escrito.</p>
-        <p class="en">The artisan operates the pedals with their feet to alternately raise warp threads, while passing the shuttle with weft thread hand to hand. It requires total coordination between feet, hands, and mind — the complex design lives only in the artisan's memory, not in a written pattern.</p>
+        <p class="es">Acciono los pedales con los pies para levantar alternadamente los hilos de urdimbre, mientras paso la lanzadera con el hilo de trama de mano en mano. Requiere coordinación total entre pies, manos y mente — el diseño complejo vive solo en mi memoria, no en un patrón escrito.</p>
+        <p class="en">I operate the pedals with my feet to alternately raise warp threads, while passing the shuttle with weft thread hand to hand. It requires total coordination between feet, hands, and mind — the complex design lives only in my memory, not in a written pattern.</p>
       </div>
     </div>
     <div class="paso reveal">
@@ -1028,14 +1041,14 @@
       <div>
         <h3 class="es">Acabado</h3>
         <h3 class="en">Finishing</h3>
-        <p class="es">Al terminar el tejido, se cortan los hilos sobrantes, se atan los flecos, y el tapete se lava una vez más para fijar los colores y suavizar la lana. Un tapete bien terminado no tiene hilos sueltos visibles por el reverso — revisar el reverso es la primera prueba de calidad.</p>
-        <p class="en">Once weaving is complete, excess threads are trimmed, fringes tied, and the rug is washed once more to set colors and soften the wool. A well-finished rug has no visible loose threads on the back — checking the back is the first quality test.</p>
+        <p class="es">Al terminar el tejido, corto los hilos sobrantes, ato los flecos, y lavo el tapete una vez más para fijar los colores y suavizar la lana. Un tapete bien terminado no tiene hilos sueltos visibles por el reverso — revisar el reverso es la primera prueba de calidad.</p>
+        <p class="en">Once weaving is complete, I trim the excess threads, tie the fringes, and wash the rug once more to set colors and soften the wool. A well-finished rug has no visible loose threads on the back — checking the back is the first quality test.</p>
       </div>
     </div>
   </div>
 
-  <p class="sec-body es" style="margin-top:16px;">Cada día empieza con eso en mente: si hay un tapete en el telar, es continuarlo; si es un diseño nuevo, es concentración total, sin distracciones. Por eso ningún tapete es igual a otro — ni siquiera si pides el mismo diseño. Los tintes naturales y la lana nunca son idénticos de una oveja a otra, así que el color tampoco vuelve a ser exactamente el mismo.</p>
-  <p class="sec-body en" style="margin-top:16px;">Every day starts with that in mind: if there's a rug already on the loom, it's about continuing it; if it's a new design, it's total concentration, no distractions. That's why no two rugs are ever the same — not even if you order the same design again. Natural dyes and wool are never identical from one sheep to the next, so the color never comes out exactly the same either.</p>
+  <p class="sec-body es" style="margin-top:16px;">Cada día empiezo con eso en mente: si tengo un tapete en el telar, lo continúo; si es un diseño nuevo, es concentración total, sin distracciones. Por eso ningún tapete mío es igual a otro — ni siquiera si me pides el mismo diseño. Mis tintes naturales y la lana nunca son idénticos de una oveja a otra, así que el color tampoco vuelve a salirme exactamente igual.</p>
+  <p class="sec-body en" style="margin-top:16px;">Every day I start with that in mind: if I have a rug already on the loom, I continue it; if it's a new design, it's total concentration, no distractions. That's why no two of my rugs are ever the same — not even if you ask for the same design again. My natural dyes and wool are never identical from one sheep to the next, so the color never comes out exactly the same for me either.</p>
 </section>
 
 <blockquote>
@@ -1116,8 +1129,8 @@
 
   <div class="contacto-wrap">
     <div class="contact-info">
-      <p class="es">Este es el contacto directo con Hilario — sin intermediarios. Cuéntale qué buscas: tamaño, diseño, tintes, o un nuevo encargo.</p>
-      <p class="en">This is the direct line to Hilario — no intermediaries. Tell him what you're looking for: size, design, dyes, or a new commission.</p>
+      <p class="es">Este es mi contacto directo — sin intermediarios. Cuéntame qué buscas: tamaño, diseño, tintes, o un nuevo encargo.</p>
+      <p class="en">This is my direct contact — no intermediaries. Tell me what you're looking for: size, design, dyes, or a new commission.</p>
 
       <div class="dato">
         <span class="dato-label es">Origen</span>
@@ -1205,7 +1218,7 @@
     <a href="#" aria-label="Facebook" style="color:var(--muted-dark);text-decoration:none;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;transition:color 0.2s;" onmouseover="this.style.color='#f2e8d9'" onmouseout="this.style.color='var(--muted-dark)'">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
     </a>
-    <a href="#" aria-label="Instagram" style="color:var(--muted-dark);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#f2e8d9'" onmouseout="this.style.color='var(--muted-dark)'">
+    <a href="https://www.instagram.com/madejitasz" target="_blank" rel="noopener" aria-label="Instagram" style="color:var(--muted-dark);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#f2e8d9'" onmouseout="this.style.color='var(--muted-dark)'">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
     </a>
     <a href="#" aria-label="TikTok" style="color:var(--muted-dark);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#f2e8d9'" onmouseout="this.style.color='var(--muted-dark)'">
@@ -1379,7 +1392,7 @@
 
 <!-- Redes sociales flotantes -->
 <div style="position:fixed;bottom:24px;right:16px;z-index:8000;display:flex;flex-direction:column;gap:14px;align-items:center;">
-  <a href="#" aria-label="Instagram" style="color:rgba(242,232,217,0.5);transition:color 0.2s;display:block;" onmouseover="this.style.color='#f2e8d9'" onmouseout="this.style.color='rgba(242,232,217,0.5)'">
+  <a href="https://www.instagram.com/madejitasz" target="_blank" rel="noopener" aria-label="Instagram" style="color:rgba(242,232,217,0.5);transition:color 0.2s;display:block;" onmouseover="this.style.color='#f2e8d9'" onmouseout="this.style.color='rgba(242,232,217,0.5)'">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
   </a>
   <a href="#" aria-label="TikTok" style="color:rgba(242,232,217,0.5);transition:color 0.2s;display:block;" onmouseover="this.style.color='#f2e8d9'" onmouseout="this.style.color='rgba(242,232,217,0.5)'">

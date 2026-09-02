@@ -220,9 +220,15 @@
       opacity: 0;
       animation: fadeUp 1s 0.4s forwards;
     }
-    .hero-title em {
+    .hero-title em,
+    .sec-title em {
       font-style: italic;
       color: var(--cochinilla-light);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='12'%3E%3Cline x1='2' y1='10' x2='11' y2='2' stroke='%23b3822e' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: repeat-x;
+      background-position: left bottom 4px;
+      background-size: 16px 12px;
+      padding-bottom: 12px;
     }
     .hero-sub {
       font-family: 'Cormorant Garamond', serif;
@@ -278,12 +284,8 @@
       color: var(--ink-soft); text-transform: uppercase;
     }
     .ticker-inner span strong {
-      color: #c5453a;
-      font-weight: 700;
-      text-shadow:
-        0 1px 0 #7a140f,
-        0 2px 0 #6b110c,
-        0 2.5px 2px rgba(36,26,16,0.35);
+      color: var(--cochinilla-light);
+      font-weight: 600;
     }
     @keyframes ticker {
       from { transform: translateX(0); }
@@ -304,7 +306,6 @@
       line-height: 1.1;
       margin-bottom: 24px;
     }
-    .sec-title em { font-style: italic; color: var(--cochinilla-light); }
     .sec-body {
       font-size: 1rem; color: var(--ink-soft);
       max-width: 680px; line-height: 1.8;
@@ -871,8 +872,8 @@
   <h2 class="sec-title en">Bring one<br><em>home</em></h2>
 
   <div class="tienda-intro">
-    <p class="sec-body es">Trabajamos por encargo directo con el artesano. Sin intermediarios, sin precios inflados. El precio varía según tamaño, complejidad del diseño y tipo de tinte. Consulta sin compromiso.</p>
-    <p class="sec-body en">We work by direct commission with the artisan. No intermediaries, no inflated prices. Price varies by size, design complexity and dye type. Inquire with no obligation.</p>
+    <p class="sec-body es">Trabajo por encargo directo contigo. Sin intermediarios, sin precios inflados. El precio varía según tamaño, complejidad del diseño y tipo de tinte. Consúltame sin compromiso.</p>
+    <p class="sec-body en">I work by direct commission with you. No intermediaries, no inflated prices. Price varies by size, design complexity and dye type. Ask me with no obligation.</p>
   </div>
 
   <div class="tienda-grid">
@@ -987,8 +988,8 @@
 
   <div class="contacto-wrap">
     <div class="contact-info">
-      <p class="es">Este es el contacto directo con la familia que tejió tu tapete — sin intermediarios. Cuéntanos qué buscas: tamaño, diseño, tintes, o un nuevo encargo.</p>
-      <p class="en">This is the direct line to the family who wove your rug — no intermediaries. Tell us what you're looking for: size, design, dyes, or a new commission.</p>
+      <p class="es">Este es mi contacto directo — sin intermediarios. Cuéntame qué buscas: tamaño, diseño, tintes, o un nuevo encargo.</p>
+      <p class="en">This is my direct contact — no intermediaries. Tell me what you're looking for: size, design, dyes, or a new commission.</p>
 
       <div class="dato">
         <span class="dato-label es">Origen</span>
@@ -1075,7 +1076,7 @@
     <a href="#" aria-label="Facebook" style="color:var(--muted-dark);text-decoration:none;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;transition:color 0.2s;" onmouseover="this.style.color='#f2e8d9'" onmouseout="this.style.color='var(--muted-dark)'">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
     </a>
-    <a href="#" aria-label="Instagram" style="color:var(--muted-dark);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#f2e8d9'" onmouseout="this.style.color='var(--muted-dark)'">
+    <a href="https://www.instagram.com/madejitasz" target="_blank" rel="noopener" aria-label="Instagram" style="color:var(--muted-dark);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#f2e8d9'" onmouseout="this.style.color='var(--muted-dark)'">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
     </a>
     <a href="#" aria-label="TikTok" style="color:var(--muted-dark);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#f2e8d9'" onmouseout="this.style.color='var(--muted-dark)'">
@@ -1249,7 +1250,7 @@
 
 <!-- Redes sociales flotantes -->
 <div style="position:fixed;bottom:24px;right:16px;z-index:8000;display:flex;flex-direction:column;gap:14px;align-items:center;">
-  <a href="#" aria-label="Instagram" style="color:rgba(242,232,217,0.5);transition:color 0.2s;display:block;" onmouseover="this.style.color='#f2e8d9'" onmouseout="this.style.color='rgba(242,232,217,0.5)'">
+  <a href="https://www.instagram.com/madejitasz" target="_blank" rel="noopener" aria-label="Instagram" style="color:rgba(242,232,217,0.5);transition:color 0.2s;display:block;" onmouseover="this.style.color='#f2e8d9'" onmouseout="this.style.color='rgba(242,232,217,0.5)'">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
   </a>
   <a href="#" aria-label="TikTok" style="color:rgba(242,232,217,0.5);transition:color 0.2s;display:block;" onmouseover="this.style.color='#f2e8d9'" onmouseout="this.style.color='rgba(242,232,217,0.5)'">
