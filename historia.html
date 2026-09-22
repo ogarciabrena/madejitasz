@@ -1280,13 +1280,16 @@
         : 'Por favor llena nombre y contacto.');
       return;
     }
-    // WhatsApp fallback (reemplazar con GAS cuando esté listo)
     const tipo    = document.getElementById('f-tipo').value;
     const mensaje = document.getElementById('f-mensaje').value;
-    const txt = encodeURIComponent(
+    // WhatsApp desactivado temporalmente: el número de Hilario es su celular
+    // personal, aún no hay línea de negocio. Se usa mailto mientras tanto;
+    // cambiar a wa.me cuando exista un número dedicado.
+    const asunto = encodeURIComponent(`Contacto desde el sitio — ${nombre}`);
+    const cuerpo = encodeURIComponent(
       `Hola, soy ${nombre}.\nTipo: ${tipo}\n${mensaje}\nContacto: ${contacto}`
     );
-    window.open(`https://wa.me/529510000000?text=${txt}`, '_blank');
+    window.location.href = `mailto:contacto@14hilosdelana.com?subject=${asunto}&body=${cuerpo}`;
     document.getElementById('form-ok').style.display = 'block';
   }
 
@@ -1307,8 +1310,10 @@
     var msg = document.getElementById('m-msg').value.trim();
     var titulo = document.getElementById('modalTitle').textContent;
     if (!nombre || !contacto) return;
-    var txt = encodeURIComponent('Hola, me interesa: ' + titulo + '\nNombre: ' + nombre + '\n' + (msg || '') + '\nContacto: ' + contacto);
-    window.open('https://wa.me/529510000000?text=' + txt, '_blank');
+    // WhatsApp desactivado temporalmente (ver enviarForm) — usa mailto hasta tener número de negocio.
+    var asunto = encodeURIComponent('Me interesa: ' + titulo);
+    var cuerpo = encodeURIComponent('Hola, me interesa: ' + titulo + '\nNombre: ' + nombre + '\n' + (msg || '') + '\nContacto: ' + contacto);
+    window.location.href = 'mailto:contacto@14hilosdelana.com?subject=' + asunto + '&body=' + cuerpo;
     cerrarModal();
   }
   window.addEventListener('load', function() {

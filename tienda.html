@@ -996,13 +996,11 @@
         <span class="dato-label en">Origin</span>
         <span class="dato-val">Teotitlán del Valle, Oaxaca, México</span>
       </div>
-      <div class="dato">
-        <span class="dato-label">WhatsApp</span>
-        <span class="dato-val"><a href="https://wa.me/529511234567" style="color:var(--cochinilla-light);text-decoration:none;">+52 951 000 0000</a></span>
-      </div>
+      <!-- WhatsApp desactivado: aún no hay número de negocio (el personal de
+           Hilario es su único celular). Reactivar cuando exista uno dedicado. -->
       <div class="dato">
         <span class="dato-label">Email</span>
-        <span class="dato-val"><a href="mailto:tapetes@ejemplo.com" style="color:var(--cochinilla-light);text-decoration:none;">tapetes@ejemplo.com</a></span>
+        <span class="dato-val"><a href="mailto:contacto@14hilosdelana.com" style="color:var(--cochinilla-light);text-decoration:none;">contacto@14hilosdelana.com</a></span>
       </div>
 
       <p style="margin-top:24px; font-size:0.85rem; color:var(--ink-faint);" class="es">⏱ Tiempo de elaboración: 15 días a 3 meses según tamaño y complejidad.</p>
@@ -1181,13 +1179,16 @@
         : 'Por favor llena nombre y contacto.');
       return;
     }
-    // WhatsApp fallback (reemplazar con GAS cuando esté listo)
     const tipo    = document.getElementById('f-tipo').value;
     const mensaje = document.getElementById('f-mensaje').value;
-    const txt = encodeURIComponent(
+    // WhatsApp desactivado temporalmente: el número de Hilario es su celular
+    // personal, aún no hay línea de negocio. Se usa mailto mientras tanto;
+    // cambiar a wa.me cuando exista un número dedicado.
+    const asunto = encodeURIComponent(`Contacto desde el sitio — ${nombre}`);
+    const cuerpo = encodeURIComponent(
       `Hola, soy ${nombre}.\nTipo: ${tipo}\n${mensaje}\nContacto: ${contacto}`
     );
-    window.open(`https://wa.me/529510000000?text=${txt}`, '_blank');
+    window.location.href = `mailto:contacto@14hilosdelana.com?subject=${asunto}&body=${cuerpo}`;
     document.getElementById('form-ok').style.display = 'block';
   }
 
@@ -1208,8 +1209,10 @@
     var msg = document.getElementById('m-msg').value.trim();
     var titulo = document.getElementById('modalTitle').textContent;
     if (!nombre || !contacto) return;
-    var txt = encodeURIComponent('Hola, me interesa: ' + titulo + '\nNombre: ' + nombre + '\n' + (msg || '') + '\nContacto: ' + contacto);
-    window.open('https://wa.me/529510000000?text=' + txt, '_blank');
+    // WhatsApp desactivado temporalmente (ver enviarForm) — usa mailto hasta tener número de negocio.
+    var asunto = encodeURIComponent('Me interesa: ' + titulo);
+    var cuerpo = encodeURIComponent('Hola, me interesa: ' + titulo + '\nNombre: ' + nombre + '\n' + (msg || '') + '\nContacto: ' + contacto);
+    window.location.href = 'mailto:contacto@14hilosdelana.com?subject=' + asunto + '&body=' + cuerpo;
     cerrarModal();
   }
   window.addEventListener('load', function() {
