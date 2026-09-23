@@ -712,8 +712,12 @@
     .g-item:nth-child(1) { grid-column: span 7; grid-row: span 2; }
     .g-item:nth-child(2) { grid-column: span 5; }
     .g-item:nth-child(3) { grid-column: span 5; }
-    .g-item:nth-child(4) { grid-column: span 4; }
-    .g-item:nth-child(5) { grid-column: span 8; }
+    .g-item:nth-child(4) { grid-column: span 5; }
+    .g-item:nth-child(5) { grid-column: span 7; }
+    .g-item:nth-child(6) { grid-column: span 4; }
+    .g-item:nth-child(7) { grid-column: span 8; }
+    .g-video { cursor: default; background: #000; }
+    .g-video video { width: 100%; height: 100%; object-fit: cover; display: block; }
     .g-item img {
       width: 100%; height: 100%;
       object-fit: cover;
@@ -731,14 +735,19 @@
     }
     .g-item:hover .g-caption { opacity: 1; }
     @media (max-width: 600px) {
-      .galeria-grid { grid-template-columns: 1fr 1fr; gap: 4px; }
+      .galeria-grid { grid-template-columns: 1fr 1fr; gap: 4px; grid-auto-flow: dense; }
       .g-item:nth-child(1),
       .g-item:nth-child(2),
       .g-item:nth-child(3),
       .g-item:nth-child(4),
-      .g-item:nth-child(5) { grid-column: span 1; grid-row: span 1; }
-      .g-item:nth-child(1) { grid-column: span 2; }
+      .g-item:nth-child(5),
+      .g-item:nth-child(6),
+      .g-item:nth-child(7) { grid-column: span 1; grid-row: span 1; }
+      .g-item:nth-child(1),
+      .g-item:nth-child(5),
+      .g-item:nth-child(7) { grid-column: span 2; }
       .g-item img { height: 180px; }
+      .g-video video { height: 220px; }
     }
 
     /* ── TIENDA ── */
@@ -1133,43 +1142,53 @@
 
 
 <!-- ═══════════════════════════════════════
-     GALERÍA
+     POR DENTRO
 ═══════════════════════════════════════ -->
-<section id="galeria">
-  <p class="sec-label es">02 · Galería</p>
-  <p class="sec-label en">02 · Gallery</p>
+<section id="por-dentro">
+  <p class="sec-label es">02 · Por dentro</p>
+  <p class="sec-label en">02 · Inside</p>
 
   <h2 class="sec-title es">El taller<br>por <em>dentro</em></h2>
   <h2 class="sec-title en">The workshop<br>from <em>within</em></h2>
 
-  <p class="sec-body es">Imágenes del proceso real, desde el cardado de la lana hasta el tapete terminado.</p>
-  <p class="sec-body en">Images of the real process, from wool carding to the finished rug.</p>
+  <p class="sec-body es">Así se hace cada tapete: los tintes, los hilos y el telar, tal como pasan en mi taller.</p>
+  <p class="sec-body en">This is how every rug is made: the dyes, the threads and the loom, just as it happens in my workshop.</p>
 
   <div class="galeria-grid">
     <div class="g-item reveal">
-      <img src="img/tapete-greca-azul.jpg" alt="Tapete con greca zapoteca en tonos azules" loading="lazy">
-      <div class="g-caption es">Greca en azul índigo</div>
-      <div class="g-caption en">Indigo step-fret</div>
+      <img src="img/tintes-hilos-colgados.jpg" alt="Madejas de lana teñidas con tintes naturales, colgadas junto a los ingredientes del tinte" loading="lazy">
+      <div class="g-caption es">Tintes naturales</div>
+      <div class="g-caption en">Natural dyes</div>
     </div>
     <div class="g-item reveal">
-      <img src="img/tapete-base-tarjeta.jpg" alt="Detalle de tapete con greca y diamante central" loading="lazy">
-      <div class="g-caption es">Detalle de greca</div>
-      <div class="g-caption en">Step-fret detail</div>
+      <img src="img/nopal-cochinilla.jpg" alt="Dedo manchado de rojo sobre un nopal con grana cochinilla" loading="lazy">
+      <div class="g-caption es">Grana cochinilla</div>
+      <div class="g-caption en">Cochineal</div>
     </div>
     <div class="g-item reveal">
-      <img src="img/grana-cochinilla.jpg" alt="Grana cochinilla recolectada a mano en nopal" loading="lazy">
-      <div class="g-caption es">El origen del rojo</div>
-      <div class="g-caption en">Where red comes from</div>
+      <img src="img/carretes-madera.jpg" alt="Carretes de lana en tonos crudo, morado, amarillo y rojo sobre madera" loading="lazy">
+      <div class="g-caption es">Hilos listos para tejer</div>
+      <div class="g-caption en">Yarn ready to weave</div>
     </div>
     <div class="g-item reveal">
-      <img src="img/tapete-telar.jpg" alt="Tapete degradado en el telar al aire libre" loading="lazy">
-      <div class="g-caption es">Tapete en su ambiente</div>
-      <div class="g-caption en">Rug in context</div>
+      <img src="img/telar-lanzaderas.jpg" alt="Tapete de rayas en el telar con dos lanzaderas de madera encima" loading="lazy">
+      <div class="g-caption es">El telar en acción</div>
+      <div class="g-caption en">The loom at work</div>
+    </div>
+    <div class="g-item g-video reveal">
+      <video controls preload="none" playsinline poster="img/recorrido-poster.jpg" aria-label="Recorrido por el taller de 14 Hilos de Lana">
+        <source src="video/recorrido-taller.mp4" type="video/mp4">
+      </video>
     </div>
     <div class="g-item reveal">
-      <img src="img/tapete-greca-bn.jpg" alt="Tapete con greca clásica en blanco y negro" loading="lazy">
-      <div class="g-caption es">Greca en blanco y negro</div>
-      <div class="g-caption en">Black and white step-fret</div>
+      <img src="img/tapete-naranja-telar.jpg" alt="Tapete en degradado de rojo a naranja en el telar" loading="lazy">
+      <div class="g-caption es">Un tapete en el telar</div>
+      <div class="g-caption en">A rug on the loom</div>
+    </div>
+    <div class="g-item reveal">
+      <img src="img/hilos-secandose.jpg" alt="Madejas de lana de colores secándose bajo el techo del taller" loading="lazy">
+      <div class="g-caption es">Secando la lana teñida</div>
+      <div class="g-caption en">Drying the dyed wool</div>
     </div>
   </div></section>
 
@@ -1301,7 +1320,7 @@
     <li><a href="#familia"><span class="es">Hilario</span><span class="en">Hilario</span></a></li>
     <li><a href="historia.html"><span class="es">Historia</span><span class="en">History</span></a></li>
     <li><a href="#proceso"><span class="es">El Taller</span><span class="en">The Workshop</span></a></li>
-    <li><a href="#galeria"><span class="es">Galería</span><span class="en">Gallery</span></a></li>
+    <li><a href="#por-dentro"><span class="es">Por dentro</span><span class="en">Inside</span></a></li>
     <li><a href="tienda.html"><span class="es">Tienda</span><span class="en">Shop</span></a></li>
     <li><a href="#contacto"><span class="es">Contacto</span><span class="en">Contact</span></a></li>
   </ul>
