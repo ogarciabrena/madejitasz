@@ -623,18 +623,6 @@
       color: var(--cream);
       font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem;
     }
-    .carrusel-btn {
-      position: absolute; top: calc(50% - 12px); transform: translateY(-50%);
-      width: 40px; height: 40px; border-radius: 50%;
-      border: 1px solid var(--ink-faint);
-      background: rgba(246,236,217,0.92); color: var(--ink);
-      font-size: 1.5rem; line-height: 1; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s;
-    }
-    .carrusel-btn:hover { background: var(--cream); }
-    .carrusel-btn.prev { left: 12px; }
-    .carrusel-btn.next { right: 12px; }
     .carrusel-puntos { display: flex; justify-content: center; gap: 10px; margin-top: 14px; }
     .carrusel-punto {
       width: 10px; height: 10px; padding: 0; border-radius: 50%;
@@ -1020,8 +1008,6 @@
             <figcaption class="en">My siblings and I, with our rugs</figcaption>
           </figure>
         </div>
-        <button type="button" class="carrusel-btn prev" aria-label="Foto anterior / Previous photo">&#8249;</button>
-        <button type="button" class="carrusel-btn next" aria-label="Foto siguiente / Next photo">&#8250;</button>
         <div class="carrusel-puntos">
           <button type="button" class="carrusel-punto on" aria-label="Foto 1"></button>
           <button type="button" class="carrusel-punto" aria-label="Foto 2"></button>
@@ -1466,8 +1452,6 @@
         p.setAttribute('aria-current', k === i ? 'true' : 'false');
       });
     }
-    c.querySelector('.prev').addEventListener('click', function() { ir(actual() - 1); });
-    c.querySelector('.next').addEventListener('click', function() { ir(actual() + 1); });
     puntos.forEach(function(p, k) { p.addEventListener('click', function() { ir(k); }); });
     pista.addEventListener('scroll', marcar, { passive: true });
     pista.addEventListener('keydown', function(e) {
