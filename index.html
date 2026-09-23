@@ -607,13 +607,6 @@
       box-shadow: 0 14px 30px rgba(139,26,26,0.45), 0 3px 8px rgba(36,26,16,0.25);
     }
     .btn-send:active { transform: translateY(0); }
-    #form-ok {
-      display: none; margin-top: 16px;
-      padding: 16px; text-align: center;
-      background: rgba(139,26,26,0.10);
-      border: 1px solid var(--line);
-      color: var(--ink); font-size: 0.9rem;
-    }
 
     /* ── FOOTER — banda nocturna de cierre ── */
     footer {
@@ -881,6 +874,17 @@
     }
     .modal-sub { font-size: 0.85rem; color: var(--muted-dark); margin-bottom: 24px; }
 
+    /* ── CONTACTO: invitación + cuadro ── */
+    .contact-cta { align-self: center; }
+    .contact-cta p {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.35rem;
+      color: var(--ink-soft); margin-bottom: 28px; line-height: 1.5;
+    }
+    .modal-box { max-height: 92vh; overflow-y: auto; }
+    #m-ok { display: none; padding: 28px 0 12px; text-align: center; color: var(--cream); line-height: 1.6; }
+    #m-error { display: none; color: #e8a598; font-size: 0.85rem; margin: 0 0 12px; }
+    @media (max-width: 600px) { .modal-box { padding: 32px 20px; } }
+
     /* ── ANIMACIONES HERO ── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
@@ -995,10 +999,10 @@
       <div class="hero-ctas">
         <a href="#familia" class="btn-outline es">Conóceme</a>
         <a href="#familia" class="btn-outline en">Meet me</a>
-        <a href="#contacto" onclick="elegirTipo('tapete')" class="btn-cta es">Conseguir un tapete</a>
-        <a href="#contacto" onclick="elegirTipo('tapete')" class="btn-cta en">Get a rug</a>
-        <a href="#contacto" onclick="elegirVisita()" class="btn-cta alt es">Visita mi taller</a>
-        <a href="#contacto" onclick="elegirVisita()" class="btn-cta alt en">Visit my workshop</a>
+        <a href="#contacto" onclick="abrirContacto('tapete'); return false;" class="btn-cta es">Conseguir un tapete</a>
+        <a href="#contacto" onclick="abrirContacto('tapete'); return false;" class="btn-cta en">Get a rug</a>
+        <a href="#contacto" onclick="abrirContacto('visita'); return false;" class="btn-cta alt es">Visita mi taller</a>
+        <a href="#contacto" onclick="abrirContacto('visita'); return false;" class="btn-cta alt en">Visit my workshop</a>
       </div>
     </div>
 
@@ -1081,8 +1085,6 @@
       <p class="sec-body en">You scanned my rug. I'm <strong>14 Hilos de Lana</strong>, my workshop here in Teotitlán del Valle. The name isn't random: <em>14</em> for the day I was born, <em>Hilos</em> (threads) for my name, <em>Lana</em> (wool) for the material I work with.</p>
       <p class="sec-body es">Soy la cuarta generación: de mi bisabuelo a mi abuelo José, de José a mi padre Miguel, y de Miguel a mí. Sigo los diseños raíz de mis ancestros, pero también arriesgo, tejo no solo lana, sino algodón, seda, piel, gamuza e ixtle, materiales que pocos se atreven a dominar.</p>
       <p class="sec-body en">I'm the fourth generation: from my great-grandfather to my grandfather José, from José to my father Miguel, and from Miguel to me. I follow my ancestors' root designs, but I also take risks, weaving not just wool, but cotton, silk, leather, suede, and ixtle, materials few dare to master.</p>
-      <a href="#contacto" class="btn-cta es" style="margin-top:8px;">Contáctame</a>
-      <a href="#contacto" class="btn-cta en" style="margin-top:8px;">Contact me</a>
     </div>
   </div>
 </section>
@@ -1264,8 +1266,8 @@
   <p class="sec-body es">Escríbeme y nos ponemos de acuerdo en el día y la hora.</p>
   <p class="sec-body en">Write to me and we'll agree on the day and time.</p>
 
-  <a href="#contacto" onclick="elegirVisita()" class="btn-cta es" style="margin-top:8px;">Quiero visitar el taller</a>
-  <a href="#contacto" onclick="elegirVisita()" class="btn-cta en" style="margin-top:8px;">I want to visit the workshop</a>
+  <a href="#contacto" onclick="abrirContacto('visita'); return false;" class="btn-cta es" style="margin-top:8px;">Quiero visitar el taller</a>
+  <a href="#contacto" onclick="abrirContacto('visita'); return false;" class="btn-cta en" style="margin-top:8px;">I want to visit the workshop</a>
 </section>
 
 <div class="sep"></div>
@@ -1308,52 +1310,11 @@
       <p style="margin-top:24px; font-size:0.85rem; color:var(--ink-faint);" class="en">⏱ Production time: 15 days to 3 months depending on size and complexity.</p>
     </div>
 
-    <div class="contact-form">
-      <div class="form-group">
-        <label class="es">Nombre *</label>
-        <label class="en">Name *</label>
-        <input type="text" id="f-nombre" placeholder="Tu nombre">
-      </div>
-      <div class="form-group">
-        <label class="es">Correo o WhatsApp *</label>
-        <label class="en">Email or WhatsApp *</label>
-        <input type="text" id="f-contacto" placeholder="correo@ejemplo.com">
-      </div>
-      <div class="form-group">
-        <label class="es">¿Qué buscas?</label>
-        <label class="en">What are you looking for?</label>
-        <select id="f-tipo" onchange="ajustarPlaceholder()">
-          <option class="es" value="">Selecciona...</option>
-          <option class="en" value="">Select...</option>
-          <option value="visita" class="es">Quiero visitar el taller</option>
-          <option value="visita" class="en">I want to visit the workshop</option>
-          <option value="tapete" class="es">Quiero conseguir un tapete</option>
-          <option value="tapete" class="en">I want to get a rug</option>
-          <option value="pequeno" class="es">Tapete pequeño (hasta 60×90cm)</option>
-          <option value="pequeno" class="en">Small rug (up to 60×90cm)</option>
-          <option value="mediano" class="es">Tapete mediano (90×150cm)</option>
-          <option value="mediano" class="en">Medium rug (90×150cm)</option>
-          <option value="grande" class="es">Tapete grande (150×200cm+)</option>
-          <option value="grande" class="en">Large rug (150×200cm+)</option>
-          <option value="encargo" class="es">Encargo especial / diseño personalizado</option>
-          <option value="encargo" class="en">Special commission / custom design</option>
-          <option value="otro" class="es">Otro / No sé aún</option>
-          <option value="otro" class="en">Other / Not sure yet</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label class="es">Mensaje</label>
-        <label class="en">Message</label>
-        <textarea id="f-mensaje" placeholder="Cuéntanos qué tienes en mente, tamaño, colores, diseño..."></textarea>
-      </div>
-      <button class="btn-send" onclick="enviarForm()">
-        <span class="es">Enviar</span>
-        <span class="en">Send</span>
-      </button>
-      <div id="form-ok">
-        <span class="es">✓ Mensaje enviado. Te contactamos en menos de 24 horas.</span>
-        <span class="en">✓ Message sent. We'll contact you within 24 hours.</span>
-      </div>
+    <div class="contact-cta">
+      <p class="es">Cuéntame qué buscas y te respondo en menos de 24 horas.</p>
+      <p class="en">Tell me what you're looking for and I'll get back to you within 24 hours.</p>
+      <a href="#contacto" onclick="abrirContacto(''); return false;" class="btn-cta es">Escríbeme</a>
+      <a href="#contacto" onclick="abrirContacto(''); return false;" class="btn-cta en">Write to me</a>
     </div>
   </div>
 </section>
@@ -1393,6 +1354,70 @@
   <p class="footer-legal es">El tejido artesanal es la economía de una comunidad entera. Compra con conciencia.</p>
   <p class="footer-legal en">Artisanal weaving is the economy of an entire community. Buy with awareness.</p>
 </footer>
+
+<!-- ═══════════════════════════════════════
+     CUADRO DE CONTACTO (lo abren todos los botones de acción)
+═══════════════════════════════════════ -->
+<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose" aria-label="Cerrar / Close">&#x2715;</button>
+    <div id="m-form">
+      <h3 class="modal-title es" id="modalTitle">Cuéntame qué buscas</h3>
+      <h3 class="modal-title en">Tell me what you're looking for</h3>
+      <p class="modal-sub es">Te contactamos en menos de 24 horas.</p>
+      <p class="modal-sub en">We'll contact you within 24 hours.</p>
+      <div class="form-group">
+        <label class="es">Nombre *</label>
+        <label class="en">Name *</label>
+        <input type="text" id="m-nombre" autocomplete="name">
+      </div>
+      <div class="form-group">
+        <label class="es">Correo o WhatsApp *</label>
+        <label class="en">Email or WhatsApp *</label>
+        <input type="text" id="m-contacto" autocomplete="email" placeholder="correo@ejemplo.com">
+      </div>
+      <div class="form-group">
+        <label class="es">¿Qué buscas?</label>
+        <label class="en">What are you looking for?</label>
+        <select id="m-tipo" onchange="ajustarPlaceholder()">
+          <option class="es" value="">Selecciona...</option>
+          <option class="en" value="">Select...</option>
+          <option value="visita" class="es">Quiero visitar el taller</option>
+          <option value="visita" class="en">I want to visit the workshop</option>
+          <option value="tapete" class="es">Quiero conseguir un tapete</option>
+          <option value="tapete" class="en">I want to get a rug</option>
+          <option value="pequeno" class="es">Tapete pequeño (hasta 60×90cm)</option>
+          <option value="pequeno" class="en">Small rug (up to 60×90cm)</option>
+          <option value="mediano" class="es">Tapete mediano (90×150cm)</option>
+          <option value="mediano" class="en">Medium rug (90×150cm)</option>
+          <option value="grande" class="es">Tapete grande (150×200cm+)</option>
+          <option value="grande" class="en">Large rug (150×200cm+)</option>
+          <option value="encargo" class="es">Encargo especial / diseño personalizado</option>
+          <option value="encargo" class="en">Special commission / custom design</option>
+          <option value="otro" class="es">Otro / No sé aún</option>
+          <option value="otro" class="en">Other / Not sure yet</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="es">Mensaje (opcional)</label>
+        <label class="en">Message (optional)</label>
+        <textarea id="m-msg" rows="3" placeholder="Cuéntanos qué tienes en mente, tamaño, colores, diseño..."></textarea>
+      </div>
+      <p id="m-error" role="alert">
+        <span class="es">Por favor llena nombre y contacto.</span>
+        <span class="en">Please fill in name and contact.</span>
+      </p>
+      <button class="btn-send" onclick="enviarContacto()">
+        <span class="es">Enviar</span>
+        <span class="en">Send</span>
+      </button>
+    </div>
+    <div id="m-ok" role="status">
+      <span class="es">✓ Mensaje enviado. Te contactamos en menos de 24 horas.</span>
+      <span class="en">✓ Message sent. We'll contact you within 24 hours.</span>
+    </div>
+  </div>
+</div>
 
 <!-- ═══════════════════════════════════════
      JAVASCRIPT
@@ -1475,10 +1500,10 @@
     if (e.target === this) closeNav();
   });
 
-  /* ── VISITA AL TALLER ── */
+  /* ── CUADRO DE CONTACTO ── */
   function ajustarPlaceholder() {
-    var msg = document.getElementById('f-mensaje');
-    var sel = document.getElementById('f-tipo');
+    var msg = document.getElementById('m-msg');
+    var sel = document.getElementById('m-tipo');
     if (!msg || !sel) return;
     var lang = document.body.classList.contains('lang-en') ? 'en' : 'es';
     // Las opciones vienen duplicadas ES/EN: dejar seleccionada la del idioma activo.
@@ -1494,15 +1519,60 @@
         : 'Cuéntanos qué tienes en mente, tamaño, colores, diseño...';
     }
   }
-  function elegirTipo(valor) {
-    var sel = document.getElementById('f-tipo');
-    if (!sel) return;
+  var cierreTimer = null;
+  function abrirContacto(tipo) {
+    var sel = document.getElementById('m-tipo');
     var lang = document.body.classList.contains('lang-en') ? 'en' : 'es';
-    var opt = sel.querySelector('option[value="' + valor + '"].' + lang);
+    clearTimeout(cierreTimer);
+    document.getElementById('m-form').style.display = '';
+    document.getElementById('m-ok').style.display = 'none';
+    document.getElementById('m-error').style.display = 'none';
+    var opt = sel.querySelector('option[value="' + (tipo || '') + '"].' + lang);
     if (opt) opt.selected = true;
     ajustarPlaceholder();
+    document.getElementById('modalOverlay').classList.add('open');
+    // En celular no enfocar solo, para que no salte el teclado antes de tiempo.
+    if (!window.matchMedia('(pointer: coarse)').matches) {
+      setTimeout(function() { document.getElementById('m-nombre').focus(); }, 50);
+    }
   }
-  function elegirVisita() { elegirTipo('visita'); }
+  function cerrarModal() {
+    clearTimeout(cierreTimer);
+    document.getElementById('modalOverlay').classList.remove('open');
+  }
+  function enviarContacto() {
+    var nombre = document.getElementById('m-nombre').value.trim();
+    var contacto = document.getElementById('m-contacto').value.trim();
+    var tipo = document.getElementById('m-tipo').value;
+    var mensaje = document.getElementById('m-msg').value.trim();
+    var err = document.getElementById('m-error');
+    if (!nombre || !contacto) { err.style.display = 'block'; return; }
+    err.style.display = 'none';
+    // Los leads van al Worker (Telegram). Si falla, se abre el correo como respaldo.
+    var asunto = encodeURIComponent('Contacto desde el sitio: ' + nombre);
+    var cuerpo = encodeURIComponent('Hola, soy ' + nombre + '.\nTipo: ' + tipo + '\n' + mensaje + '\nContacto: ' + contacto);
+    enviarLead(
+      { nombre: nombre, contacto: contacto, tipo: tipo, mensaje: mensaje, origen: origenPagina() + ' (modal)' },
+      'mailto:contacto@14hilosdelana.com?subject=' + asunto + '&body=' + cuerpo
+    ).then(function() {
+      document.getElementById('m-form').style.display = 'none';
+      document.getElementById('m-ok').style.display = 'block';
+      ['m-nombre', 'm-contacto', 'm-msg'].forEach(function(id) { document.getElementById(id).value = ''; });
+      cierreTimer = setTimeout(cerrarModal, 4000);
+    });
+  }
+  window.addEventListener('load', function() {
+    var mc = document.getElementById('modalClose');
+    if (mc) {
+      mc.addEventListener('click', cerrarModal);
+      mc.addEventListener('touchstart', function(e){ e.preventDefault(); cerrarModal(); });
+    }
+    var mo = document.getElementById('modalOverlay');
+    if (mo) {
+      mo.addEventListener('click', function(e){ if(e.target===mo) cerrarModal(); });
+    }
+  });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') cerrarModal(); });
 
   /* ── CARRUSEL ── */
   document.querySelectorAll('[data-carrusel]').forEach(function(c) {
@@ -1547,68 +1617,6 @@
       .catch(function() { window.location.href = mailtoUrl; return false; })
       .then(function(ok) { enviandoLead = false; return ok; });
   }
-
-  /* ── FORMULARIO ── */
-  function enviarForm() {
-    const nombre   = document.getElementById('f-nombre').value.trim();
-    const contacto = document.getElementById('f-contacto').value.trim();
-    if (!nombre || !contacto) {
-      alert(document.body.classList.contains('lang-en')
-        ? 'Please fill in name and contact.'
-        : 'Por favor llena nombre y contacto.');
-      return;
-    }
-    const tipo    = document.getElementById('f-tipo').value;
-    const mensaje = document.getElementById('f-mensaje').value;
-    // Los leads van al Worker (Telegram). Si falla, se abre el correo como respaldo.
-    const asunto = encodeURIComponent(`Contacto desde el sitio: ${nombre}`);
-    const cuerpo = encodeURIComponent(
-      `Hola, soy ${nombre}.\nTipo: ${tipo}\n${mensaje}\nContacto: ${contacto}`
-    );
-    enviarLead(
-      { nombre, contacto, tipo, mensaje, origen: origenPagina() },
-      `mailto:contacto@14hilosdelana.com?subject=${asunto}&body=${cuerpo}`
-    ).then(function() {
-      document.getElementById('form-ok').style.display = 'block';
-    });
-  }
-
-
-  /* ── MODAL TIENDA ── */
-  function abrirModal(producto) {
-    document.getElementById('modalTitle').textContent = producto;
-    document.getElementById('modalOverlay').classList.add('open');
-    /* sin overflow hidden */
-  }
-  function cerrarModal() {
-    document.getElementById('modalOverlay').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  function enviarModal() {
-    var nombre = document.getElementById('m-nombre').value.trim();
-    var contacto = document.getElementById('m-contacto').value.trim();
-    var msg = document.getElementById('m-msg').value.trim();
-    var titulo = document.getElementById('modalTitle').textContent;
-    if (!nombre || !contacto) return;
-    // Los leads van al Worker (Telegram). Si falla, se abre el correo como respaldo.
-    var asunto = encodeURIComponent('Me interesa: ' + titulo);
-    var cuerpo = encodeURIComponent('Hola, me interesa: ' + titulo + '\nNombre: ' + nombre + '\n' + (msg || '') + '\nContacto: ' + contacto);
-    enviarLead(
-      { nombre: nombre, contacto: contacto, tipo: 'Me interesa: ' + titulo, mensaje: msg, origen: origenPagina() + ' (modal)' },
-      'mailto:contacto@14hilosdelana.com?subject=' + asunto + '&body=' + cuerpo
-    ).then(cerrarModal);
-  }
-  window.addEventListener('load', function() {
-    var mc = document.getElementById('modalClose');
-    if (mc) {
-      mc.addEventListener('click', cerrarModal);
-      mc.addEventListener('touchstart', function(e){ e.preventDefault(); cerrarModal(); });
-    }
-    var mo = document.getElementById('modalOverlay');
-    if (mo) {
-      mo.addEventListener('click', function(e){ if(e.target===mo) cerrarModal(); });
-    }
-  });
 
   /* ── REVEAL ON SCROLL (SKILL: no opacity:0 en contenido base, solo con clase .reveal) ── */
   function initReveal() {
