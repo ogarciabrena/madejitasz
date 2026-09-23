@@ -278,6 +278,52 @@
     }
     .btn-outline:hover { border-color: var(--ink); background: rgba(36,26,16,0.05); }
 
+    /* ── BOTONES: jerarquía ──
+       .btn-cta  = llamado a la acción (lleva al contacto / deja tus datos): sombra y movimiento suave.
+       .btn-outline = solo navega a otra sección o página: discreto, sin sombra. */
+    .btn-cta {
+      display: inline-block;
+      background: var(--cochinilla); color: var(--cream);
+      border: 1.5px solid var(--cochinilla);
+      padding: 16px 34px;
+      font-size: 0.8rem; letter-spacing: 0.15em;
+      text-transform: uppercase; text-decoration: none;
+      cursor: pointer; border-radius: 2px;
+      box-shadow: 0 10px 24px rgba(139,26,26,0.35), 0 2px 6px rgba(36,26,16,0.25);
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s, color 0.2s;
+      animation: ctaPulse 3.6s ease-in-out infinite;
+    }
+    .btn-cta::after {
+      content: '\2192'; display: inline-block; margin-left: 10px;
+      transition: transform 0.2s;
+    }
+    .btn-cta:hover {
+      background: var(--cochinilla-light); border-color: var(--cochinilla-light);
+      transform: translateY(-2px); animation: none;
+      box-shadow: 0 14px 30px rgba(139,26,26,0.45), 0 3px 8px rgba(36,26,16,0.25);
+    }
+    .btn-cta:hover::after { transform: translateX(4px); }
+    .btn-cta:active { transform: translateY(0); }
+    .btn-cta.alt {
+      background: var(--cream); color: var(--cochinilla);
+      box-shadow: 0 8px 20px rgba(36,26,16,0.18);
+      animation: none;
+    }
+    .btn-cta.alt:hover {
+      background: var(--cochinilla); border-color: var(--cochinilla); color: var(--cream);
+      box-shadow: 0 12px 26px rgba(139,26,26,0.40);
+    }
+    @keyframes ctaPulse {
+      0%, 100% { box-shadow: 0 10px 24px rgba(139,26,26,0.35), 0 2px 6px rgba(36,26,16,0.25), 0 0 0 0 rgba(139,26,26,0.32); }
+      55%      { box-shadow: 0 10px 24px rgba(139,26,26,0.35), 0 2px 6px rgba(36,26,16,0.25), 0 0 0 12px rgba(139,26,26,0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .btn-cta { animation: none; }
+      .btn-cta, .btn-cta::after, .btn-send, .btn-consultar { transition: none; }
+    }
+    /* En inglés, los botones .en no deben estirarse a todo el ancho */
+    body.lang-en a.btn-cta.en, body.lang-en a.btn-outline.en { display: inline-block !important; }
+
     .hero-floor {
       position: absolute; left: 0; right: 0; bottom: 0;
       height: 68px;
@@ -329,7 +375,7 @@
     }
     .sec-body {
       font-size: 1rem; color: var(--ink-soft);
-      max-width: 680px; line-height: 1.8;
+      max-width: 900px; line-height: 1.8;
       margin-bottom: 16px;
     }
     blockquote {
@@ -414,7 +460,7 @@
       font-size: 1.15rem; color: var(--ink);
       margin-bottom: 8px;
     }
-    .paso p { font-size: 0.95rem; color: var(--ink-soft); }
+    .paso p { font-size: 0.95rem; color: var(--ink-soft); max-width: 816px; }
 
     /* ── JUZGAR — COMPARATIVA ── */
     .tabla-comparativa {
@@ -552,10 +598,15 @@
       font-size: 0.8rem; letter-spacing: 0.15em;
       text-transform: uppercase;
       cursor: pointer; border-radius: 2px;
-      transition: background 0.2s;
+      box-shadow: 0 10px 24px rgba(139,26,26,0.35), 0 2px 6px rgba(36,26,16,0.25);
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
       font-family: 'Inter', sans-serif;
     }
-    .btn-send:hover { background: var(--cochinilla-light); }
+    .btn-send:hover {
+      background: var(--cochinilla-light); transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(139,26,26,0.45), 0 3px 8px rgba(36,26,16,0.25);
+    }
+    .btn-send:active { transform: translateY(0); }
     #form-ok {
       display: none; margin-top: 16px;
       padding: 16px; text-align: center;
@@ -752,7 +803,7 @@
 
     /* ── TIENDA ── */
     .tienda-intro {
-      max-width: 680px; margin-bottom: 48px;
+      max-width: 900px; margin-bottom: 48px;
     }
     .tienda-grid {
       display: grid;
@@ -792,16 +843,19 @@
       font-style: italic;
     }
     .btn-consultar {
-      background: none;
+      background: var(--cochinilla);
       border: 1px solid var(--cochinilla);
-      color: var(--cochinilla);
-      padding: 8px 16px; font-size: 0.7rem;
+      color: var(--cream);
+      padding: 9px 18px; font-size: 0.7rem;
       letter-spacing: 0.12em; text-transform: uppercase;
       cursor: pointer; border-radius: 2px;
-      transition: all 0.2s; font-family: 'Inter', sans-serif;
+      box-shadow: 0 6px 16px rgba(139,26,26,0.30), 0 1px 4px rgba(36,26,16,0.22);
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s; font-family: 'Inter', sans-serif;
     }
     .btn-consultar:hover {
-      background: var(--cochinilla); color: var(--cream);
+      background: var(--cochinilla-light); border-color: var(--cochinilla-light);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(139,26,26,0.40), 0 2px 6px rgba(36,26,16,0.22);
     }
     /* Modal cotización — superficie nocturna de foco */
     .modal-overlay {
@@ -941,12 +995,12 @@
       <p class="hero-sub en">You scanned my rug. I'm Hilario, a weaver from Teotitlán del Valle. This isn't decoration, it's living memory I wove with my own hands.</p>
 
       <div class="hero-ctas">
-        <a href="#familia" class="btn-primary es">Conóceme</a>
-        <a href="#familia" class="btn-primary en">Meet me</a>
-        <a href="#contacto" class="btn-outline es">Conseguir un tapete</a>
-        <a href="#contacto" class="btn-outline en">Get a rug</a>
-        <a href="#contacto" onclick="elegirVisita()" class="btn-outline es">Visita mi taller</a>
-        <a href="#contacto" onclick="elegirVisita()" class="btn-outline en">Visit my workshop</a>
+        <a href="#familia" class="btn-outline es">Conóceme</a>
+        <a href="#familia" class="btn-outline en">Meet me</a>
+        <a href="#contacto" class="btn-cta es">Conseguir un tapete</a>
+        <a href="#contacto" class="btn-cta en">Get a rug</a>
+        <a href="#contacto" onclick="elegirVisita()" class="btn-cta alt es">Visita mi taller</a>
+        <a href="#contacto" onclick="elegirVisita()" class="btn-cta alt en">Visit my workshop</a>
       </div>
     </div>
 
@@ -1029,8 +1083,8 @@
       <p class="sec-body en">You scanned my rug. I'm <strong>14 Hilos de Lana</strong>, my workshop here in Teotitlán del Valle. The name isn't random: <em>14</em> for the day I was born, <em>Hilos</em> (threads) for my name, <em>Lana</em> (wool) for the material I work with.</p>
       <p class="sec-body es">Soy la cuarta generación: de mi bisabuelo a mi abuelo José, de José a mi padre Miguel, y de Miguel a mí. Sigo los diseños raíz de mis ancestros, pero también arriesgo, tejo no solo lana, sino algodón, seda, piel, gamuza e ixtle, materiales que pocos se atreven a dominar.</p>
       <p class="sec-body en">I'm the fourth generation: from my great-grandfather to my grandfather José, from José to my father Miguel, and from Miguel to me. I follow my ancestors' root designs, but I also take risks, weaving not just wool, but cotton, silk, leather, suede, and ixtle, materials few dare to master.</p>
-      <a href="#contacto" class="btn-primary es" style="display:inline-block; margin-top:8px;">Contáctame</a>
-      <a href="#contacto" class="btn-primary en" style="display:inline-block; margin-top:8px;">Contact me</a>
+      <a href="#contacto" class="btn-cta es" style="margin-top:8px;">Contáctame</a>
+      <a href="#contacto" class="btn-cta en" style="margin-top:8px;">Contact me</a>
     </div>
   </div>
 </section>
@@ -1212,8 +1266,8 @@
   <p class="sec-body es">Escríbeme y nos ponemos de acuerdo en el día y la hora.</p>
   <p class="sec-body en">Write to me and we'll agree on the day and time.</p>
 
-  <a href="#contacto" onclick="elegirVisita()" class="btn-primary es" style="display:inline-block; margin-top:8px;">Quiero visitar el taller</a>
-  <a href="#contacto" onclick="elegirVisita()" class="btn-primary en" style="display:inline-block; margin-top:8px;">I want to visit the workshop</a>
+  <a href="#contacto" onclick="elegirVisita()" class="btn-cta es" style="margin-top:8px;">Quiero visitar el taller</a>
+  <a href="#contacto" onclick="elegirVisita()" class="btn-cta en" style="margin-top:8px;">I want to visit the workshop</a>
 </section>
 
 <div class="sep"></div>
