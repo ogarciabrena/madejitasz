@@ -306,7 +306,7 @@
     .btn-cta:active { transform: translateY(0); }
     .btn-cta.alt {
       background: var(--cream); color: var(--cochinilla);
-      box-shadow: 0 8px 20px rgba(36,26,16,0.18);
+      box-shadow: 0 10px 24px rgba(139,26,26,0.28), 0 2px 6px rgba(36,26,16,0.22);
       animation: none;
     }
     .btn-cta.alt:hover {
@@ -948,7 +948,6 @@
     <li><a onclick="navTo('familia')"><span class="es">Hilario</span><span class="en">Hilario</span></a></li>
     <li><a href="historia.html"><span class="es">Historia</span><span class="en">History</span></a></li>
     <li><a onclick="navTo('proceso')"><span class="es">El Taller</span><span class="en">The Workshop</span></a></li>
-    <li><a href="tienda.html"><span class="es">Tienda</span><span class="en">Shop</span></a></li>
     <li><a onclick="navTo('contacto')"><span class="es">Contacto</span><span class="en">Contact</span></a></li>
   </ul>
   <div class="nav-right">
@@ -967,7 +966,6 @@
   <a onclick="navTo('familia')" style="color:#f2e8d9;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1.9rem;letter-spacing:0.05em;cursor:pointer;"><span class="es">Hilario</span><span class="en">Hilario</span></a>
   <a href="historia.html" style="color:#f2e8d9;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1.9rem;letter-spacing:0.05em;"><span class="es">Historia</span><span class="en">History</span></a>
   <a onclick="navTo('proceso')" style="color:#f2e8d9;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1.9rem;letter-spacing:0.05em;cursor:pointer;"><span class="es">El Taller</span><span class="en">The Workshop</span></a>
-  <a href="tienda.html" style="color:#f2e8d9;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1.9rem;letter-spacing:0.05em;"><span class="es">Tienda</span><span class="en">Shop</span></a>
   <a onclick="navTo('contacto')" style="color:#f2e8d9;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1.9rem;letter-spacing:0.05em;cursor:pointer;"><span class="es">Contacto</span><span class="en">Contact</span></a>
 </div>
 
@@ -997,8 +995,8 @@
       <div class="hero-ctas">
         <a href="#familia" class="btn-outline es">Conóceme</a>
         <a href="#familia" class="btn-outline en">Meet me</a>
-        <a href="#contacto" class="btn-cta es">Conseguir un tapete</a>
-        <a href="#contacto" class="btn-cta en">Get a rug</a>
+        <a href="#contacto" onclick="elegirTipo('tapete')" class="btn-cta es">Conseguir un tapete</a>
+        <a href="#contacto" onclick="elegirTipo('tapete')" class="btn-cta en">Get a rug</a>
         <a href="#contacto" onclick="elegirVisita()" class="btn-cta alt es">Visita mi taller</a>
         <a href="#contacto" onclick="elegirVisita()" class="btn-cta alt en">Visit my workshop</a>
       </div>
@@ -1184,8 +1182,8 @@
 <div style="max-width:680px; margin:0 auto; padding:0 24px 80px; text-align:center;">
   <p class="es" style="font-family:'Cormorant Garamond', serif; font-size:1.15rem; color:var(--ink-soft);">¿Quieres conocer los 2,500 años de tradición zapoteca detrás de cada tapete, y cómo distinguir uno auténtico?</p>
   <p class="en" style="font-family:'Cormorant Garamond', serif; font-size:1.15rem; color:var(--ink-soft);">Want to learn the 2,500 years of Zapotec tradition behind every rug, and how to spot an authentic one?</p>
-  <a href="historia.html" class="btn-outline es" style="display:inline-block; margin-top:36px;">Historia y tradición</a>
-  <a href="historia.html" class="btn-outline en" style="display:inline-block; margin-top:36px;">History and tradition</a>
+  <a href="historia.html" class="btn-outline es" style="display:inline-block; margin-top:56px;">Historia y tradición</a>
+  <a href="historia.html" class="btn-outline en" style="display:inline-block; margin-top:56px;">History and tradition</a>
 </div>
 
 <div class="sep"></div>
@@ -1329,6 +1327,8 @@
           <option class="en" value="">Select...</option>
           <option value="visita" class="es">Quiero visitar el taller</option>
           <option value="visita" class="en">I want to visit the workshop</option>
+          <option value="tapete" class="es">Quiero conseguir un tapete</option>
+          <option value="tapete" class="en">I want to get a rug</option>
           <option value="pequeno" class="es">Tapete pequeño (hasta 60×90cm)</option>
           <option value="pequeno" class="en">Small rug (up to 60×90cm)</option>
           <option value="mediano" class="es">Tapete mediano (90×150cm)</option>
@@ -1371,7 +1371,6 @@
     <li><a href="historia.html"><span class="es">Historia</span><span class="en">History</span></a></li>
     <li><a href="#proceso"><span class="es">El Taller</span><span class="en">The Workshop</span></a></li>
     <li><a href="#por-dentro"><span class="es">Por dentro</span><span class="en">Inside</span></a></li>
-    <li><a href="tienda.html"><span class="es">Tienda</span><span class="en">Shop</span></a></li>
     <li><a href="#contacto"><span class="es">Contacto</span><span class="en">Contact</span></a></li>
   </ul>
 
@@ -1495,14 +1494,15 @@
         : 'Cuéntanos qué tienes en mente, tamaño, colores, diseño...';
     }
   }
-  function elegirVisita() {
+  function elegirTipo(valor) {
     var sel = document.getElementById('f-tipo');
     if (!sel) return;
     var lang = document.body.classList.contains('lang-en') ? 'en' : 'es';
-    var opt = sel.querySelector('option[value="visita"].' + lang);
+    var opt = sel.querySelector('option[value="' + valor + '"].' + lang);
     if (opt) opt.selected = true;
     ajustarPlaceholder();
   }
+  function elegirVisita() { elegirTipo('visita'); }
 
   /* ── CARRUSEL ── */
   document.querySelectorAll('[data-carrusel]').forEach(function(c) {
