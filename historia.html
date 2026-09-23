@@ -1270,6 +1270,25 @@
     if (e.target === this) closeNav();
   });
 
+  /* ── ENVÍO DE LEADS (Worker → Telegram) ── */
+  var LEADS_URL = 'https://hilos-de-lana-leads.ogarciabrena.workers.dev';
+  var enviandoLead = false;
+  function origenPagina() {
+    return location.pathname.split('/').pop() || 'index.html';
+  }
+  function enviarLead(datos, mailtoUrl) {
+    if (enviandoLead) return Promise.resolve(false);
+    enviandoLead = true;
+    return fetch(LEADS_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(datos)
+    })
+      .then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return true; })
+      .catch(function() { window.location.href = mailtoUrl; return false; })
+      .then(function(ok) { enviandoLead = false; return ok; });
+  }
+
   /* ── FORMULARIO ── */
   function enviarForm() {
     const nombre   = document.getElementById('f-nombre').value.trim();
@@ -1282,15 +1301,17 @@
     }
     const tipo    = document.getElementById('f-tipo').value;
     const mensaje = document.getElementById('f-mensaje').value;
-    // WhatsApp desactivado temporalmente: el número de Hilario es su celular
-    // personal, aún no hay línea de negocio. Se usa mailto mientras tanto;
-    // cambiar a wa.me cuando exista un número dedicado.
+    // Los leads van al Worker (Telegram). Si falla, se abre el correo como respaldo.
     const asunto = encodeURIComponent(`Contacto desde el sitio: ${nombre}`);
     const cuerpo = encodeURIComponent(
       `Hola, soy ${nombre}.\nTipo: ${tipo}\n${mensaje}\nContacto: ${contacto}`
     );
-    window.location.href = `mailto:contacto@14hilosdelana.com?subject=${asunto}&body=${cuerpo}`;
-    document.getElementById('form-ok').style.display = 'block';
+    enviarLead(
+      { nombre, contacto, tipo, mensaje, origen: origenPagina() },
+      `mailto:contacto@14hilosdelana.com?subject=${asunto}&body=${cuerpo}`
+    ).then(function() {
+      document.getElementById('form-ok').style.display = 'block';
+    });
   }
 
 
@@ -1310,11 +1331,13 @@
     var msg = document.getElementById('m-msg').value.trim();
     var titulo = document.getElementById('modalTitle').textContent;
     if (!nombre || !contacto) return;
-    // WhatsApp desactivado temporalmente (ver enviarForm) — usa mailto hasta tener número de negocio.
+    // Los leads van al Worker (Telegram). Si falla, se abre el correo como respaldo.
     var asunto = encodeURIComponent('Me interesa: ' + titulo);
     var cuerpo = encodeURIComponent('Hola, me interesa: ' + titulo + '\nNombre: ' + nombre + '\n' + (msg || '') + '\nContacto: ' + contacto);
-    window.location.href = 'mailto:contacto@14hilosdelana.com?subject=' + asunto + '&body=' + cuerpo;
-    cerrarModal();
+    enviarLead(
+      { nombre: nombre, contacto: contacto, tipo: 'Me interesa: ' + titulo, mensaje: msg, origen: origenPagina() + ' (modal)' },
+      'mailto:contacto@14hilosdelana.com?subject=' + asunto + '&body=' + cuerpo
+    ).then(cerrarModal);
   }
   window.addEventListener('load', function() {
     var mc = document.getElementById('modalClose');
