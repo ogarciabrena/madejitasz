@@ -874,6 +874,38 @@
     }
     .modal-sub { font-size: 0.85rem; color: var(--muted-dark); margin-bottom: 24px; }
 
+    /* ── GALERÍA: tapetes recortados que flotan + fotos ── */
+    .flotantes {
+      display: flex; justify-content: center; align-items: flex-end;
+      gap: clamp(12px, 3vw, 44px); margin: 56px 0 64px; padding: 24px 0 8px;
+    }
+    .flotante {
+      --giro: 0deg;
+      height: clamp(150px, 42vw, 470px); width: auto; display: block;
+      filter: drop-shadow(0 24px 22px rgba(36,26,16,0.34)) drop-shadow(0 4px 6px rgba(36,26,16,0.22));
+      transform: rotate(var(--giro));
+      animation: flotar 7s ease-in-out infinite;
+    }
+    .flotante:nth-child(1) { --giro: -2.2deg; animation-duration: 7.5s; }
+    .flotante:nth-child(2) { --giro: 1.4deg; animation-duration: 6.5s; animation-delay: -2s; margin-bottom: 18px; }
+    .flotante:nth-child(3) { --giro: -1deg; animation-duration: 8s; animation-delay: -4s; }
+    @keyframes flotar {
+      0%, 100% { transform: translateY(0) rotate(var(--giro)); }
+      50%      { transform: translateY(-12px) rotate(var(--giro)); }
+    }
+    @media (prefers-reduced-motion: reduce) { .flotante { animation: none; } }
+    .galeria-fotos { display: grid; grid-template-columns: repeat(12, 1fr); gap: 8px; }
+    .g-foto { position: relative; overflow: hidden; border-radius: 2px; margin: 0; }
+    .g-foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .g-foto:nth-child(1) { grid-column: span 8; aspect-ratio: 3 / 2; }
+    .g-foto:nth-child(2) { grid-column: span 4; }
+    .g-foto:nth-child(n+3) { grid-column: span 4; aspect-ratio: 3 / 4; }
+    @media (max-width: 600px) {
+      .galeria-fotos { grid-template-columns: 1fr 1fr; gap: 4px; }
+      .g-foto:nth-child(n) { grid-column: span 1; aspect-ratio: 3 / 4; }
+      .g-foto:nth-child(1) { grid-column: span 2; aspect-ratio: 3 / 2; }
+    }
+
     /* ── CONTACTO: invitación + cuadro ── */
     .contact-cta { align-self: center; }
     .contact-cta p {
@@ -924,6 +956,7 @@
     .stitched,
     .hero-photo,
     .g-item,
+    .g-foto,
     .prod-img {
       border: 5px solid transparent;
       border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Cline x1='2' y1='14' x2='14' y2='2' stroke='%23b3822e' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") 5 repeat;
@@ -951,6 +984,7 @@
   <ul class="nav-menu">
     <li><a onclick="navTo('familia')"><span class="es">Hilario</span><span class="en">Hilario</span></a></li>
     <li><a onclick="navTo('proceso')"><span class="es">El Taller</span><span class="en">The Workshop</span></a></li>
+    <li><a onclick="navTo('galeria')"><span class="es">Galería</span><span class="en">Gallery</span></a></li>
     <li><a onclick="navTo('contacto')"><span class="es">Contacto</span><span class="en">Contact</span></a></li>
   </ul>
   <div class="nav-right">
@@ -968,6 +1002,7 @@
 <div id="navLinks" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(6,3,1,0.97);z-index:9999;flex-direction:column;align-items:center;justify-content:center;gap:34px;">
   <a onclick="navTo('familia')" style="color:#f2e8d9;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1.9rem;letter-spacing:0.05em;cursor:pointer;"><span class="es">Hilario</span><span class="en">Hilario</span></a>
   <a onclick="navTo('proceso')" style="color:#f2e8d9;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1.9rem;letter-spacing:0.05em;cursor:pointer;"><span class="es">El Taller</span><span class="en">The Workshop</span></a>
+  <a onclick="navTo('galeria')" style="color:#f2e8d9;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1.9rem;letter-spacing:0.05em;cursor:pointer;"><span class="es">Galería</span><span class="en">Gallery</span></a>
   <a onclick="navTo('contacto')" style="color:#f2e8d9;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1.9rem;letter-spacing:0.05em;cursor:pointer;"><span class="es">Contacto</span><span class="en">Contact</span></a>
 </div>
 
@@ -1240,9 +1275,36 @@
 
 <div class="sep"></div>
 
+<section id="galeria">
+  <p class="sec-label es">03 · Galería</p>
+  <p class="sec-label en">03 · Gallery</p>
+
+  <h2 class="sec-title es">Tapetes<br>hechos a <em>mano</em></h2>
+  <h2 class="sec-title en">Handwoven<br><em>rugs</em></h2>
+
+  <p class="sec-body es">Una muestra de lo que sale del telar. Cada pieza es única.</p>
+  <p class="sec-body en">A sample of what comes off the loom. Every piece is one of a kind.</p>
+
+  <div class="flotantes">
+    <img class="flotante" src="img/galeria-tapete-rayas.webp" alt="Tapete azul marino con líneas blancas que se difuminan de izquierda a derecha" width="565" height="872" loading="lazy">
+    <img class="flotante" src="img/galeria-tapete-azul.webp" alt="Tapete azul con rayos rojos y naranjas en el costado izquierdo y flecos blancos" width="495" height="900" loading="lazy">
+    <img class="flotante" src="img/galeria-tapete-gris.webp" alt="Tapete en negro, gris y blanco con flechas y grecas" width="598" height="900" loading="lazy">
+  </div>
+
+  <div class="galeria-fotos">
+    <figure class="g-foto"><img src="img/galeria-mosaico.jpg" alt="Pared de tapetes de colores colgados en el taller" loading="lazy"></figure>
+    <figure class="g-foto"><img src="img/galeria-pose-cafe.jpg" alt="Tapete en tonos café y verde sostenido en alto frente a un muro de adobe" loading="lazy"></figure>
+    <figure class="g-foto"><img src="img/galeria-sarape-monte.jpg" alt="Tapete de rayas de colores sobre una cerca de madera, con montañas al fondo" loading="lazy"></figure>
+    <figure class="g-foto"><img src="img/galeria-enrollados.jpg" alt="Tapetes de colores enrollados" loading="lazy"></figure>
+    <figure class="g-foto"><img src="img/galeria-bolsas.jpg" alt="Bolsas tejidas de lana colgadas en el taller" loading="lazy"></figure>
+  </div>
+</section>
+
+<div class="sep"></div>
+
 <section id="visita">
-  <p class="sec-label es">03 · Visita</p>
-  <p class="sec-label en">03 · Visit</p>
+  <p class="sec-label es">04 · Visita</p>
+  <p class="sec-label en">04 · Visit</p>
 
   <h2 class="sec-title es">Ven a verlo<br><em>tejerse</em></h2>
   <h2 class="sec-title en">Come see it<br>being <em>woven</em></h2>
@@ -1279,17 +1341,17 @@
     <circle cx="43" cy="5" r="2.2" fill="#b3822e"/>
     <circle cx="39" cy="3" r="1.4" fill="#b23a2e"/>
   </svg>
-  <p class="sec-label es">04 · Contacto</p>
-  <p class="sec-label en">04 · Contact</p>
+  <p class="sec-label es">05 · Contacto</p>
+  <p class="sec-label en">05 · Contact</p>
 
   <h2 class="sec-title es">¿Buscas un<br>tapete <em>específico</em>?</h2>
   <h2 class="sec-title en">Looking for a<br><em>specific</em> rug?</h2>
 
+  <p class="sec-body es">Este es mi contacto directo, sin intermediarios. Cuéntame qué buscas: tamaño, diseño, tintes, o un nuevo encargo.</p>
+  <p class="sec-body en">This is my direct contact, no intermediaries. Tell me what you're looking for: size, design, dyes, or a new commission.</p>
+
   <div class="contacto-wrap">
     <div class="contact-info">
-      <p class="es">Este es mi contacto directo, sin intermediarios. Cuéntame qué buscas: tamaño, diseño, tintes, o un nuevo encargo.</p>
-      <p class="en">This is my direct contact, no intermediaries. Tell me what you're looking for: size, design, dyes, or a new commission.</p>
-
       <div class="dato">
         <span class="dato-label es">Origen</span>
         <span class="dato-label en">Origin</span>
@@ -1302,8 +1364,6 @@
         <span class="dato-val"><a href="mailto:contacto@14hilosdelana.com" style="color:var(--cochinilla-light);text-decoration:none;">contacto@14hilosdelana.com</a></span>
       </div>
 
-      <p style="margin-top:24px; font-size:0.85rem; color:var(--ink-faint);" class="es">⏱ Tiempo de elaboración: 15 días a 3 meses según tamaño y complejidad.</p>
-      <p style="margin-top:24px; font-size:0.85rem; color:var(--ink-faint);" class="en">⏱ Production time: 15 days to 3 months depending on size and complexity.</p>
     </div>
 
     <div class="contact-cta">
@@ -1328,6 +1388,7 @@
     <li><a href="historia.html"><span class="es">Historia</span><span class="en">History</span></a></li>
     <li><a href="#proceso"><span class="es">El Taller</span><span class="en">The Workshop</span></a></li>
     <li><a href="#por-dentro"><span class="es">Por dentro</span><span class="en">Inside</span></a></li>
+    <li><a href="#galeria"><span class="es">Galería</span><span class="en">Gallery</span></a></li>
     <li><a href="#contacto"><span class="es">Contacto</span><span class="en">Contact</span></a></li>
   </ul>
 
