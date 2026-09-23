@@ -1,0 +1,6 @@
+name = "hilos-de-lana-leads"
+main = "src/index.js"
+compatibility_date = "2026-01-01"
+
+# TELEGRAM_BOT_TOKEN y TELEGRAM_CHAT_ID se configuran como Worker Secrets,
+# no van aquí. Ver README.md de esta carpeta.
