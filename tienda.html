@@ -1021,9 +1021,11 @@
       <div class="form-group">
         <label class="es">¿Qué buscas?</label>
         <label class="en">What are you looking for?</label>
-        <select id="f-tipo">
+        <select id="f-tipo" onchange="ajustarPlaceholder()">
           <option class="es" value="">Selecciona...</option>
           <option class="en" value="">Select...</option>
+          <option value="visita" class="es">Quiero visitar el taller</option>
+          <option value="visita" class="en">I want to visit the workshop</option>
           <option value="pequeno" class="es">Tapete pequeño (hasta 60×90cm)</option>
           <option value="pequeno" class="en">Small rug (up to 60×90cm)</option>
           <option value="mediano" class="es">Tapete mediano (90×150cm)</option>
@@ -1105,6 +1107,7 @@
       );
     });
     localStorage.setItem('lang', l);
+    ajustarPlaceholder();
   }
 
   /* ── MENÚ HAMBURGUESA — fix definitivo iOS Safari ── */
@@ -1168,6 +1171,34 @@
   document.getElementById('navLinks').addEventListener('click', function(e) {
     if (e.target === this) closeNav();
   });
+
+  /* ── VISITA AL TALLER ── */
+  function ajustarPlaceholder() {
+    var msg = document.getElementById('f-mensaje');
+    var sel = document.getElementById('f-tipo');
+    if (!msg || !sel) return;
+    var lang = document.body.classList.contains('lang-en') ? 'en' : 'es';
+    // Las opciones vienen duplicadas ES/EN: dejar seleccionada la del idioma activo.
+    var o = sel.querySelector('option[value="' + sel.value + '"].' + lang);
+    if (o) o.selected = true;
+    if (sel.value === 'visita') {
+      msg.placeholder = lang === 'en'
+        ? 'When are you planning to come, and how many people?'
+        : '¿Cuándo piensas venir y cuántas personas son?';
+    } else {
+      msg.placeholder = lang === 'en'
+        ? 'Tell us what you have in mind: size, colors, design...'
+        : 'Cuéntanos qué tienes en mente, tamaño, colores, diseño...';
+    }
+  }
+  function elegirVisita() {
+    var sel = document.getElementById('f-tipo');
+    if (!sel) return;
+    var lang = document.body.classList.contains('lang-en') ? 'en' : 'es';
+    var opt = sel.querySelector('option[value="visita"].' + lang);
+    if (opt) opt.selected = true;
+    ajustarPlaceholder();
+  }
 
   /* ── ENVÍO DE LEADS (Worker → Telegram) ── */
   var LEADS_URL = 'https://hilos-de-lana-leads.ogarciabrena.workers.dev';

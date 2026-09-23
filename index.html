@@ -600,6 +600,11 @@
     }
 
 
+    /* ── VISITA AL TALLER ── */
+    .visita-lista { list-style: none; padding: 0; margin: 8px 0 24px; display: grid; gap: 10px; max-width: 560px; }
+    .visita-lista li { position: relative; padding-left: 24px; color: var(--ink-soft); font-size: 0.95rem; }
+    .visita-lista li::before { content: '◈'; position: absolute; left: 0; top: 0.2em; color: var(--cochinilla); font-size: 0.7rem; }
+
     /* ── ANIMACIONES EXTRA — scroll reveal suave ── */
     .reveal {
       opacity: 0;
@@ -901,6 +906,8 @@
         <a href="#familia" class="btn-primary en">Meet me</a>
         <a href="#contacto" class="btn-outline es">Conseguir un tapete</a>
         <a href="#contacto" class="btn-outline en">Get a rug</a>
+        <a href="#contacto" onclick="elegirVisita()" class="btn-outline es">Visita mi taller</a>
+        <a href="#contacto" onclick="elegirVisita()" class="btn-outline en">Visit my workshop</a>
       </div>
     </div>
 
@@ -1115,6 +1122,34 @@
 
 <div class="sep"></div>
 
+<section id="visita">
+  <p class="sec-label es">03 · Visita</p>
+  <p class="sec-label en">03 · Visit</p>
+
+  <h2 class="sec-title es">Ven a verlo<br><em>tejerse</em></h2>
+  <h2 class="sec-title en">Come see it<br>being <em>woven</em></h2>
+
+  <p class="sec-body es">Si vienes a Teotitlán del Valle, te recibo en mi taller. Te muestro todo el proceso, desde la lana hasta el tapete terminado, y puedes verme trabajar en el telar. Puede ser una visita rápida o más larga, como prefieras.</p>
+  <p class="sec-body en">If you come to Teotitlán del Valle, I'll welcome you at my workshop. I'll show you the whole process, from raw wool to the finished rug, and you can watch me work at the loom. It can be a quick visit or a longer one, whatever you prefer.</p>
+
+  <ul class="visita-lista">
+    <li class="es">La lana: del cardado al hilo</li>
+    <li class="en">The wool: from carding to thread</li>
+    <li class="es">Los tintes naturales y sus colores</li>
+    <li class="en">Natural dyes and their colors</li>
+    <li class="es">El telar: cómo nace un tapete</li>
+    <li class="en">The loom: how a rug is born</li>
+  </ul>
+
+  <p class="sec-body es">Escríbeme y nos ponemos de acuerdo en el día y la hora.</p>
+  <p class="sec-body en">Write to me and we'll agree on the day and time.</p>
+
+  <a href="#contacto" onclick="elegirVisita()" class="btn-primary es" style="display:inline-block; margin-top:8px;">Quiero visitar el taller</a>
+  <a href="#contacto" onclick="elegirVisita()" class="btn-primary en" style="display:inline-block; margin-top:8px;">I want to visit the workshop</a>
+</section>
+
+<div class="sep"></div>
+
 <!-- ═══════════════════════════════════════
      CONTACTO
 ═══════════════════════════════════════ -->
@@ -1126,8 +1161,8 @@
     <circle cx="43" cy="5" r="2.2" fill="#b3822e"/>
     <circle cx="39" cy="3" r="1.4" fill="#b23a2e"/>
   </svg>
-  <p class="sec-label es">03 · Contacto</p>
-  <p class="sec-label en">03 · Contact</p>
+  <p class="sec-label es">04 · Contacto</p>
+  <p class="sec-label en">04 · Contact</p>
 
   <h2 class="sec-title es">¿Buscas un<br>tapete <em>específico</em>?</h2>
   <h2 class="sec-title en">Looking for a<br><em>specific</em> rug?</h2>
@@ -1167,9 +1202,11 @@
       <div class="form-group">
         <label class="es">¿Qué buscas?</label>
         <label class="en">What are you looking for?</label>
-        <select id="f-tipo">
+        <select id="f-tipo" onchange="ajustarPlaceholder()">
           <option class="es" value="">Selecciona...</option>
           <option class="en" value="">Select...</option>
+          <option value="visita" class="es">Quiero visitar el taller</option>
+          <option value="visita" class="en">I want to visit the workshop</option>
           <option value="pequeno" class="es">Tapete pequeño (hasta 60×90cm)</option>
           <option value="pequeno" class="en">Small rug (up to 60×90cm)</option>
           <option value="mediano" class="es">Tapete mediano (90×150cm)</option>
@@ -1252,6 +1289,7 @@
       );
     });
     localStorage.setItem('lang', l);
+    ajustarPlaceholder();
   }
 
   /* ── MENÚ HAMBURGUESA — fix definitivo iOS Safari ── */
@@ -1315,6 +1353,34 @@
   document.getElementById('navLinks').addEventListener('click', function(e) {
     if (e.target === this) closeNav();
   });
+
+  /* ── VISITA AL TALLER ── */
+  function ajustarPlaceholder() {
+    var msg = document.getElementById('f-mensaje');
+    var sel = document.getElementById('f-tipo');
+    if (!msg || !sel) return;
+    var lang = document.body.classList.contains('lang-en') ? 'en' : 'es';
+    // Las opciones vienen duplicadas ES/EN: dejar seleccionada la del idioma activo.
+    var o = sel.querySelector('option[value="' + sel.value + '"].' + lang);
+    if (o) o.selected = true;
+    if (sel.value === 'visita') {
+      msg.placeholder = lang === 'en'
+        ? 'When are you planning to come, and how many people?'
+        : '¿Cuándo piensas venir y cuántas personas son?';
+    } else {
+      msg.placeholder = lang === 'en'
+        ? 'Tell us what you have in mind: size, colors, design...'
+        : 'Cuéntanos qué tienes en mente, tamaño, colores, diseño...';
+    }
+  }
+  function elegirVisita() {
+    var sel = document.getElementById('f-tipo');
+    if (!sel) return;
+    var lang = document.body.classList.contains('lang-en') ? 'en' : 'es';
+    var opt = sel.querySelector('option[value="visita"].' + lang);
+    if (opt) opt.selected = true;
+    ajustarPlaceholder();
+  }
 
   /* ── ENVÍO DE LEADS (Worker → Telegram) ── */
   var LEADS_URL = 'https://hilos-de-lana-leads.ogarciabrena.workers.dev';
