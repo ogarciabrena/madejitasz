@@ -31,8 +31,22 @@ https://hilos-de-lana-leads.<tu-subdominio>.workers.dev
 ```
 
 Esa URL hay que pasársela a Claude para conectar el formulario del sitio
-(`index.html`, `historia.html`, `tienda.html`) — ahora mismo esos formularios
+(`index.html`, `historia.html`, `tienda.html`); ahora mismo esos formularios
 usan `mailto:` como respaldo temporal.
+
+## Pruebas antes de tener el bot de Hilario
+
+Mientras Hilario no te pase su bot, puedes desplegar el Worker con tu propio
+`chat_id` de prueba (búscalo mandándole un mensaje a `@userinfobot` en
+Telegram) y así probar el flujo completo de principio a fin. Cuando Hilario
+te dé su token y chat_id reales, solo vuelve a correr:
+
+```
+wrangler secret put TELEGRAM_CHAT_ID
+```
+
+con el valor de él. Sobreescribe el secret anterior al instante, sin tocar
+código ni volver a hacer deploy del bot.
 
 ## Qué recibe el Worker
 
