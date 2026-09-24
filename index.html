@@ -881,10 +881,22 @@
     }
     .tapete-foto {
       position: relative; overflow: hidden; border-radius: 2px; margin: 0; flex: 0 0 auto;
-      /* misma altura para los dos; la suma de anchos (≈1.315 × alto) siempre cabe en pantalla */
-      height: min(620px, calc((100vw - 56px) / 1.32));
+      /* misma altura para los dos; la suma de anchos (≈1.38 × alto) siempre cabe en pantalla */
+      height: min(560px, calc((100vw - 56px) / 1.38));
     }
     .tapete-foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .flotante {
+      height: min(560px, calc((100vw - 56px) / 1.38));
+      width: auto; display: block; flex: 0 0 auto;
+      filter: drop-shadow(0 24px 22px rgba(36,26,16,0.34)) drop-shadow(0 4px 6px rgba(36,26,16,0.22));
+      transform: rotate(-2deg);
+      animation: flotar 7s ease-in-out infinite;
+    }
+    @keyframes flotar {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50%      { transform: translateY(-12px) rotate(-2deg); }
+    }
+    @media (prefers-reduced-motion: reduce) { .flotante { animation: none; } }
     .galeria-fotos { display: grid; grid-template-columns: repeat(12, 1fr); gap: 8px; }
     .g-foto { position: relative; overflow: hidden; border-radius: 2px; margin: 0; }
     .g-foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -1311,7 +1323,7 @@
 
   <div class="tapetes-par">
     <figure class="tapete-foto" style="aspect-ratio: 611 / 892;"><img src="img/galeria-tapete-rayas.jpg" alt="Tapete azul marino con líneas blancas que se difuminan de izquierda a derecha, sostenido en alto" width="611" height="892" loading="lazy"></figure>
-    <figure class="tapete-foto" style="aspect-ratio: 807 / 1280;"><img src="img/galeria-tapete-gris.jpg" alt="Tapete en negro, gris y blanco con flechas y grecas, colgado en un muro de ladrillo" width="807" height="1280" loading="lazy"></figure>
+    <img class="flotante" src="img/galeria-tapete-medallon.webp" alt="Tapete con medallón central en forma de estrella, aves y grecas, en crema, azul marino y rojo" width="624" height="900" loading="lazy">
   </div>
 
   <div class="galeria-fotos">
