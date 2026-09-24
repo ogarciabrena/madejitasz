@@ -165,7 +165,7 @@
     .hero::after {
       content: '';
       position: absolute; inset: 0;
-      background: url('img/tapete-telar.jpg') center/cover no-repeat;
+      background: url('img/tapete-telar.webp') center/cover no-repeat;
       opacity: 0.10;
       mix-blend-mode: multiply;
       z-index: -1;
@@ -774,11 +774,13 @@
     .flotante {
       height: clamp(280px, 40vw, 480px); width: auto; display: block;
       filter: drop-shadow(0 24px 22px rgba(36,26,16,0.34)) drop-shadow(0 4px 6px rgba(36,26,16,0.22));
-      animation: flotar 7s ease-in-out infinite;
+      animation: flotar 5.5s ease-in-out infinite;
     }
     @keyframes flotar {
-      0%, 100% { transform: translateY(0); }
-      50%      { transform: translateY(-12px); }
+      0%, 100%  { transform: translateY(0)     rotate(0deg); }
+      25%       { transform: translateY(-11px) rotate(-1.4deg); }
+      50%       { transform: translateY(-22px) rotate(0deg); }
+      75%       { transform: translateY(-11px) rotate(1.4deg); }
     }
     @media (prefers-reduced-motion: reduce) { .flotante { animation: none; } }
 
@@ -1039,7 +1041,7 @@
 
   <div style="display:flex; gap:48px; flex-wrap:wrap; align-items:flex-start; margin-top:40px;">
     <div style="flex:1 1 320px; min-width:260px; max-width:420px; display:flex; justify-content:center; padding:16px 0 32px;">
-      <img class="flotante" src="img/galeria-tapete-azul.webp" alt="Tapete azul con rayos rojos y naranjas, flecos blancos arriba y abajo" width="466" height="900" loading="lazy">
+      <img class="flotante" src="img/galeria-tapete-azul.webp" alt="Tapete azul con rayos rojos y naranjas, flecos blancos arriba y abajo" width="457" height="900" loading="lazy">
     </div>
     <div class="contact-info" style="flex:1 1 320px; min-width:260px;">
       <div class="dato" style="margin-bottom:28px;">
