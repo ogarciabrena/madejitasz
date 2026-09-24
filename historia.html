@@ -770,6 +770,19 @@
     }
     .modal-sub { font-size: 0.85rem; color: var(--muted-dark); margin-bottom: 24px; }
 
+    /* ── TAPETE FLOTANTE (Partes de un Tapete) ── */
+    .flotante {
+      height: clamp(280px, 40vw, 480px); width: auto; display: block;
+      filter: drop-shadow(0 24px 22px rgba(36,26,16,0.34)) drop-shadow(0 4px 6px rgba(36,26,16,0.22));
+      transform: rotate(-2deg);
+      animation: flotar 7s ease-in-out infinite;
+    }
+    @keyframes flotar {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50%      { transform: translateY(-12px) rotate(-2deg); }
+    }
+    @media (prefers-reduced-motion: reduce) { .flotante { animation: none; } }
+
     /* ── ANIMACIONES HERO ── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
@@ -1026,8 +1039,8 @@
   <p class="sec-body en">You don't need to be a weaver to talk like one. With this, you already know how to look at a real rug.</p>
 
   <div style="display:flex; gap:48px; flex-wrap:wrap; align-items:flex-start; margin-top:40px;">
-    <div style="flex:1 1 320px; min-width:260px; max-width:420px;">
-      <img class="stitched" src="img/galeria-tapete-azul.webp" alt="Tapete azul con rayos rojos y naranjas, flecos blancos en la orilla superior" loading="lazy" style="width:100%; height:auto; display:block;">
+    <div style="flex:1 1 320px; min-width:260px; max-width:420px; display:flex; justify-content:center; padding:16px 0 32px;">
+      <img class="flotante" src="img/partes-tapete-rayos.webp" alt="Tapete azul con diamantes y rayos en rojo, naranja y café, flecos blancos arriba y abajo" width="471" height="900" loading="lazy">
     </div>
     <div class="contact-info" style="flex:1 1 320px; min-width:260px;">
       <div class="dato" style="margin-bottom:28px;">
