@@ -74,6 +74,7 @@ export default {
     });
 
     if (!tgResp.ok) {
+      console.log('Telegram error', tgResp.status, await tgResp.text());
       return jsonResponse({ error: 'No se pudo enviar a Telegram' }, 502, cors);
     }
 
